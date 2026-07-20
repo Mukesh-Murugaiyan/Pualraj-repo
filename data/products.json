@@ -1,0 +1,64 @@
+[
+  {
+    "id": "xxxxx",
+    "title": "xxxxx",
+    "subtitle": "ssssdwddee",
+    "category": "Dosing Machinery",
+    "desc": "scbhibcvowebcouwbvc",
+    "fullDescription": "adbwivcbwbvojwbvowovb",
+    "image": "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/main/1784548609641-IMG_5575.png",
+    "gallery": [
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/main/1784548609641-IMG_5575.png",
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/gallery/1784548642959-0A718F29-FAF9-4516-95EB-B2D214355143.jpeg",
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/gallery/1784548651615-D6232CD8-EE1B-42A2-96C9-833A5E33D84D.jpeg",
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/gallery/1784548656886-E53F5545-408F-4728-BA15-C5D5D9DEB64F.jpeg"
+    ],
+    "features": [
+      "Precision indexing timetable",
+      "High-torque servo actuators",
+      "Integrated sensor quality checks"
+    ],
+    "specs": {
+      "Cycle Time": "2.0 - 4.0 seconds",
+      "Frame Structure": "Heavy Duty Steel"
+    },
+    "applications": [
+      "Automotive Assembly",
+      "Industrial Packaging"
+    ],
+    "benefits": [
+      "Reduces cycle time by 50%",
+      "Zero-defect inline verification"
+    ]
+  },
+  {
+    "id": "sdsws",
+    "title": "sdsws",
+    "subtitle": "wdwed",
+    "category": "Material Transport",
+    "desc": "ddew",
+    "fullDescription": "dewde",
+    "image": "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/gallery/1784547670127-IMG_5661.jpeg",
+    "gallery": [
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/main/1784548269442-IMG_5487.jpeg",
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/gallery/1784547670127-IMG_5661.jpeg"
+    ],
+    "features": [
+      "Precision indexing timetable",
+      "High-torque servo actuators",
+      "Integrated sensor quality checks"
+    ],
+    "specs": {
+      "Cycle Time": "2.0 - 4.0 seconds",
+      "Frame Structure": "Heavy Duty Steel"
+    },
+    "applications": [
+      "Automotive Assembly",
+      "Industrial Packaging"
+    ],
+    "benefits": [
+      "Reduces cycle time by 50%",
+      "Zero-defect inline verification"
+    ]
+  }
+]
