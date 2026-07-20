@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import QuoteModal from "@/components/QuoteModal";
+import LazyImage from "@/components/LazyImage";
 import { Product } from "@/lib/products";
 
 interface ProductDetailClientProps {
@@ -60,9 +60,9 @@ export default function ProductDetailClient({
             {/* Product Media Column */}
             <div className="lg:col-span-6 space-y-6">
               
-              {/* Main Image Viewer */}
+              {/* Main Lazy Image Viewer */}
               <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-900 group shadow-xl">
-                <Image
+                <LazyImage
                   src={selectedImage}
                   alt={product.title}
                   fill
@@ -70,8 +70,8 @@ export default function ProductDetailClient({
                   sizes="(max-width: 1024px) 100vw, 600px"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono z-10">
                   <span className="bg-slate-900/90 border border-slate-800 text-slate-300 px-3 py-1 rounded">
                     Category: {product.category}
                   </span>
@@ -98,7 +98,7 @@ export default function ProductDetailClient({
                             : "border-slate-800 opacity-70 hover:opacity-100 hover:border-slate-600"
                         }`}
                       >
-                        <Image src={img} alt={`Gallery ${idx + 1}`} fill className="object-cover" />
+                        <LazyImage src={img} alt={`Gallery ${idx + 1}`} fill className="object-cover" />
                       </button>
                     ))}
                   </div>
@@ -260,7 +260,7 @@ export default function ProductDetailClient({
                     </svg>
                     Live Factory Test & Operation Video
                   </h3>
-                  <span className="text-xs font-mono text-slate-400">TCP Workshop Footage</span>
+                  <span className="text-xs font-mono text-slate-400">Pualraj Workshop Footage</span>
                 </div>
                 <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-slate-800 shadow-2xl">
                   <video
@@ -376,14 +376,14 @@ export default function ProductDetailClient({
                 >
                   <div>
                     <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
-                      <Image
+                      <LazyImage
                         src={relProduct.image}
                         alt={relProduct.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 400px"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-sm border border-slate-800 px-2.5 py-1 rounded text-[10px] font-mono uppercase text-slate-300">
+                      <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-sm border border-slate-800 px-2.5 py-1 rounded text-[10px] font-mono uppercase text-slate-300 z-10">
                         {relProduct.category}
                       </div>
                     </div>

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { 
   getAllProductsFromDb, 
   getProductFromDbById, 
@@ -7,6 +8,9 @@ import {
   deleteProductFromDb 
 } from '@/lib/db';
 import { Product } from '@/lib/products';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 // GET /api/products or /api/products?id=spm
 export async function GET(request: Request) {
@@ -56,6 +60,8 @@ export async function POST(request: Request) {
     };
 
     const saved = await saveProductToDb(newProduct);
+    revalidatePath('/');
+    revalidatePath('/api/products');
     return NextResponse.json({ success: true, product: saved }, { status: 201 });
   } catch (error) {
     console.error('API POST /api/products error:', error);
@@ -78,6 +84,8 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
+    revalidatePath('/');
+    revalidatePath('/api/products');
     return NextResponse.json({ success: true, product: updated });
   } catch (error) {
     console.error('API PUT /api/products error:', error);
@@ -109,6 +117,8 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Product not found or already deleted' }, { status: 404 });
     }
 
+    revalidatePath('/');
+    revalidatePath('/api/products');
     return NextResponse.json({ success: true, message: `Product ${id} deleted successfully` });
   } catch (error) {
     console.error('API DELETE /api/products error:', error);
