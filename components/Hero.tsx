@@ -23,7 +23,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
       {/* Background Image with dark blue/black overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero_factory.png"
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1920&auto=format&fit=crop"
           alt="Automated factory floor"
           fill
           priority
