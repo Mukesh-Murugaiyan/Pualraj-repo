@@ -43,9 +43,9 @@ export default function About() {
             requestAnimationFrame(animate);
           } else {
             setStats({
-              years: 15,
+              years: 5,
               projects: 150,
-              engineers: 45,
+              engineers: 15,
               satisfaction: 99,
             });
           }
@@ -94,7 +94,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 bg-slate-950" ref={sectionRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
@@ -163,7 +163,7 @@ export default function About() {
         {/* Deep Explanation Section for Electra Weighing Systems (EWS) */}
         <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 sm:p-12 mb-20 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
               <div>
