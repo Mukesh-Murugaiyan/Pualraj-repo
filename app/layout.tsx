@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TCP Automation | Smart Industrial Automation Solutions",
-  description: "TCP Automation designs and manufactures Special Purpose Machines (SPM), PLC Automation panels, Conveyor Systems, Robotic Automation, and Custom Industrial Machines. Leading Industry 4.0 solutions.",
+  title: "EWS - Electra Weighing Systems | Industrial Weighing & Automation Solutions",
+  description: "Electra Weighing Systems (EWS) designs and manufactures high-accuracy industrial weighing machines, digital load cell systems, dynamic checkweighers, hopper batching rigs, and SPM weighing automation solutions.",
 };
 
 export default function RootLayout({

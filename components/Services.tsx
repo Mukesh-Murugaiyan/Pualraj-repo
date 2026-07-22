@@ -49,7 +49,7 @@ export default function Services() {
     },
     {
       title: "Robotic Integration",
-      desc: "Turnkey development of robotic operations for automated loading, assembly, sorting, and high-precision welding. Vision system calibration included.",
+      desc: "Turnkey development of robotic operations for automated loading, assembly, sorting, and high-accuracy welding. Vision system calibration included.",
       points: [
         "articulated 6-axis, SCARA, and Delta robot configuration",
         "Bespoke end-of-arm gripper design (EOAT)",
@@ -65,7 +65,7 @@ export default function Services() {
     },
     {
       title: "Site Installation & Commissioning",
-      desc: "On-site installation, precision leveling, electrical tie-ins, dry-run, and wet-run commissioning testing by our global mobilization team.",
+      desc: "On-site installation, laser leveling, electrical tie-ins, dry-run, and wet-run commissioning testing by our global mobilization team.",
       points: [
         "Mechanical installation & alignment verification",
         "Cable tray routing & field wiring tie-ins",

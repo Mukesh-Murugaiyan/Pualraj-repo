@@ -25,22 +25,22 @@ export default function FloatingActions() {
       
       {/* Call floating button */}
       <a
-        href="tel:+15550192834"
+        href="tel:+919566962031"
         className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-brand-orange text-white shadow-lg hover:bg-orange-500 hover:scale-105 transition-all duration-200"
-        aria-label="Call TCP Automation"
+        aria-label="Call Electra Weighing Systems"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
         </svg>
         {/* Tooltip */}
         <span className="absolute right-14 bg-slate-900 border border-slate-800 text-white text-[10px] uppercase font-bold tracking-wider px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap shadow-md">
-          Call Sales
+          Call Director (Paulraj.S)
         </span>
       </a>
 
       {/* WhatsApp floating button */}
       <a
-        href="https://wa.me/15550192834?text=Hello%20TCP%20Automation,%20I%20would%20like%20to%20inquire%20about%20your%20automation%20services."
+        href="https://wa.me/919566962031?text=Hello%20Electra%20Weighing%20Systems%20(EWS),%20I%20would%20like%20to%20inquire%20about%20your%20weighing%20automation%20solutions."
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#20ba59] hover:scale-105 transition-all duration-200"

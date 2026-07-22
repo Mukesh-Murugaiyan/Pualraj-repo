@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Product } from "@/lib/products";
+import { getYouTubeEmbedUrl } from "@/lib/video";
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -85,7 +86,7 @@ export default function ProductModal({
       setImage("");
       setGallery([]);
       setVideoUrl("");
-      setFeaturesText("Precision indexing timetable\nHigh-torque servo actuators\nIntegrated sensor quality checks");
+      setFeaturesText("Automated indexing timetable\nHigh-torque servo actuators\nIntegrated sensor quality checks");
       setApplicationsText("Automotive Assembly\nIndustrial Packaging");
       setBenefitsText("Reduces cycle time by 50%\nZero-defect inline verification");
       setSpecs([
@@ -99,6 +100,51 @@ export default function ProductModal({
 
   if (!isOpen) return null;
 
+  // --- Smart Large File Uploader (Supports Large Videos & High-Res Images up to 500MB+) ---
+  const uploadFileSmart = async (file: File, folder: string): Promise<string> => {
+    // Strategy 1: Attempt Presigned Direct Upload to Cloudflare R2 (Bypasses server body limits)
+    try {
+      const presignedRes = await fetch(
+        `/api/upload?filename=${encodeURIComponent(file.name)}&contentType=${encodeURIComponent(file.type || "application/octet-stream")}&folder=${encodeURIComponent(folder)}`
+      );
+      if (presignedRes.ok) {
+        const presignedData = await presignedRes.json();
+        if (presignedData.presignedUrl && presignedData.publicUrl) {
+          const directUploadRes = await fetch(presignedData.presignedUrl, {
+            method: "PUT",
+            headers: {
+              "Content-Type": file.type || "application/octet-stream",
+            },
+            body: file,
+          });
+
+          if (directUploadRes.ok) {
+            return presignedData.publicUrl;
+          }
+        }
+      }
+    } catch (presignedErr) {
+      console.warn("Direct R2 presigned upload failed, attempting API POST upload:", presignedErr);
+    }
+
+    // Strategy 2: Fallback to POST /api/upload
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", folder);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || `Failed to upload ${file.name}`);
+    }
+
+    return data.url;
+  };
+
   // --- Main Image File Upload ---
   const handleMainImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -107,24 +153,11 @@ export default function ProductModal({
     setIsUploadingMain(true);
     setErrorMessage(null);
 
-    const currentProdId = editingProduct ? editingProduct.id : id.trim() || title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "main");
-    if (currentProdId) formData.append("productId", currentProdId);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Main image upload failed");
-
-      setImage(data.url);
+      const uploadedUrl = await uploadFileSmart(file, "main");
+      setImage(uploadedUrl);
       if (gallery.length === 0) {
-        setGallery([data.url]);
+        setGallery([uploadedUrl]);
       }
     } catch (err: any) {
       setErrorMessage(err.message || "Failed to upload main image");
@@ -141,25 +174,13 @@ export default function ProductModal({
     setIsUploadingSub(true);
     setErrorMessage(null);
 
-    const currentProdId = editingProduct ? editingProduct.id : id.trim() || title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-    const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i]);
-    }
-    formData.append("folder", "gallery");
-    if (currentProdId) formData.append("productId", currentProdId);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Sub-images upload failed");
-
-      const newUrls: string[] = data.urls || [data.url];
-      setGallery((prev) => [...prev, ...newUrls]);
+      const uploadedUrls: string[] = [];
+      for (let i = 0; i < files.length; i++) {
+        const url = await uploadFileSmart(files[i], "gallery");
+        uploadedUrls.push(url);
+      }
+      setGallery((prev) => [...prev, ...uploadedUrls]);
     } catch (err: any) {
       setErrorMessage(err.message || "Failed to upload sub-images");
     } finally {
@@ -176,7 +197,7 @@ export default function ProductModal({
     setImage(url);
   };
 
-  // --- Single Video Upload Handler (CRUD: Single Video) ---
+  // --- Single Video Upload Handler (Supports Large MP4/MOV Files up to 500MB+) ---
   const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -184,24 +205,11 @@ export default function ProductModal({
     setIsUploadingVideo(true);
     setErrorMessage(null);
 
-    const currentProdId = editingProduct ? editingProduct.id : id.trim() || title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "videos");
-    if (currentProdId) formData.append("productId", currentProdId);
-
     try {
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Video upload failed");
-
-      setVideoUrl(data.url);
+      const uploadedUrl = await uploadFileSmart(file, "videos");
+      setVideoUrl(uploadedUrl);
     } catch (err: any) {
-      setErrorMessage(err.message || "Failed to upload video");
+      setErrorMessage(err.message || "Failed to upload video file");
     } finally {
       setIsUploadingVideo(false);
     }
@@ -648,7 +656,17 @@ export default function ProductModal({
                   {/* Video Player Preview Box */}
                   <div className="relative aspect-video bg-black border border-slate-800 rounded-xl overflow-hidden flex items-center justify-center">
                     {videoUrl ? (
-                      <video src={videoUrl} controls className="w-full h-full object-contain" />
+                      getYouTubeEmbedUrl(videoUrl) ? (
+                        <iframe
+                          src={getYouTubeEmbedUrl(videoUrl)!}
+                          title="Product Video Preview"
+                          className="w-full h-full border-0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <video src={videoUrl} controls className="w-full h-full object-contain" />
+                      )
                     ) : (
                       <div className="text-center p-4">
                         <svg className="w-8 h-8 text-slate-600 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

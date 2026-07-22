@@ -18,15 +18,15 @@ export default function Footer() {
           {/* Company Brief */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-brand-orange rounded flex items-center justify-center font-bold text-white text-base tracking-tight">
-                TCP
+              <div className="w-8 h-8 bg-brand-orange rounded flex items-center justify-center font-extrabold text-white text-sm tracking-tight">
+                EWS
               </div>
-              <span className="text-lg font-bold tracking-wider text-white">
-                AUTOMATION
+              <span className="text-base font-extrabold tracking-wider text-white">
+                ELECTRA WEIGHING SYSTEMS
               </span>
             </div>
             <p className="text-xs sm:text-sm font-light leading-relaxed">
-              TCP Automation is a premium design and manufacturing company of high-performance custom Special Purpose Machines (SPM), conveyor networks, and robotic cells for Industry 4.0 production environments.
+              Electra Weighing Systems (EWS) is a premium manufacturer of high-accuracy industrial weighing machinery, digital load cell instrumentation, dynamic checkweighers, and custom SPM automation systems.
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-slate-900 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-light text-slate-500">
           <span>
-            &copy; {new Date().getFullYear()} TCP Automation. All rights reserved.
+            &copy; {new Date().getFullYear()} Electra Weighing Systems (EWS). All rights reserved.
           </span>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

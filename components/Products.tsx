@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Product } from "@/lib/products";
 import LazyImage from "@/components/LazyImage";
 import CardSkeleton from "@/components/CardSkeleton";
+import { getYouTubeEmbedUrl } from "@/lib/video";
 
 interface ProductsProps {
   onOpenQuote: () => void;
@@ -208,7 +209,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
 
                           {/* Model Ref */}
                           <div className="absolute bottom-3 left-3 text-[11px] font-mono text-slate-400 z-10">
-                            Model: TCP-{product.id.toUpperCase()}
+                            Model: EWS-{product.id.toUpperCase()}
                           </div>
                         </div>
 
@@ -322,14 +323,24 @@ export default function Products({ onOpenQuote }: ProductsProps) {
 
             {/* Video Player */}
             <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-slate-800">
-              <video
-                src={activeVideoUrl}
-                controls
-                autoPlay
-                className="w-full h-full object-contain"
-              >
-                Your browser does not support playing HTML5 video.
-              </video>
+              {getYouTubeEmbedUrl(activeVideoUrl) ? (
+                <iframe
+                  src={getYouTubeEmbedUrl(activeVideoUrl)!}
+                  title={activeVideoTitle}
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <video
+                  src={activeVideoUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                >
+                  Your browser does not support playing HTML5 video.
+                </video>
+              )}
             </div>
 
             {/* Modal Footer */}

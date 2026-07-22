@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getYouTubeEmbedUrl } from "@/lib/video";
 
 interface MediaItem {
   id: number;
@@ -86,7 +87,7 @@ export default function ProjectsGallery() {
     },
     {
       id: 6,
-      title: "Precision Industrial Weighing & Dispensing",
+      title: "Industrial Weighing & Dispensing",
       category: "hopper",
       categoryLabel: "Dispensing Station",
       src: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1200&auto=format&fit=crop",
@@ -110,8 +111,8 @@ export default function ProjectsGallery() {
       category: "spm",
       categoryLabel: "Special Purpose Build",
       src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop",
-      desc: "Precision fabrication of custom structural steel baseframes with anti-vibration leveling mounts and safety guarding.",
-      techs: ["Heavy Channel Steel", "Powder Coating", "Precision Jig Welding"],
+      desc: "Robust fabrication of custom structural steel baseframes with anti-vibration leveling mounts and safety guarding.",
+      techs: ["Heavy Channel Steel", "Powder Coating", "Robotic Jig Welding"],
     },
     {
       id: 9,
@@ -273,14 +274,24 @@ export default function ProjectsGallery() {
             {/* Media Player / Image Viewer */}
             <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-slate-800">
               {activeMedia.isVideo && activeMedia.videoUrl ? (
-                <video
-                  src={activeMedia.videoUrl}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain"
-                >
-                  Your browser does not support HTML5 video.
-                </video>
+                getYouTubeEmbedUrl(activeMedia.videoUrl) ? (
+                  <iframe
+                    src={getYouTubeEmbedUrl(activeMedia.videoUrl)!}
+                    title={activeMedia.title}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <video
+                    src={activeMedia.videoUrl}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-contain"
+                  >
+                    Your browser does not support HTML5 video.
+                  </video>
+                )
               ) : (
                 <Image
                   src={activeMedia.src}
