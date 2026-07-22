@@ -8,6 +8,7 @@ import FloatingActions from "@/components/FloatingActions";
 import QuoteModal from "@/components/QuoteModal";
 import LazyImage from "@/components/LazyImage";
 import { Product } from "@/lib/products";
+import { getYouTubeEmbedUrl } from "@/lib/video";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -76,7 +77,7 @@ export default function ProductDetailClient({
                     Category: {product.category}
                   </span>
                   <span className="bg-brand-orange/20 border border-brand-orange/40 text-brand-orange px-3 py-1 rounded font-bold">
-                    TCP Ref: {product.id.toUpperCase()}
+                    EWS Ref: {product.id.toUpperCase()}
                   </span>
                 </div>
               </div>
@@ -263,13 +264,23 @@ export default function ProductDetailClient({
                   <span className="text-xs font-mono text-slate-400">Pualraj Workshop Footage</span>
                 </div>
                 <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-slate-800 shadow-2xl">
-                  <video
-                    src={product.videoUrl}
-                    controls
-                    className="w-full h-full object-contain"
-                  >
-                    Your browser does not support playing HTML5 video.
-                  </video>
+                  {getYouTubeEmbedUrl(product.videoUrl) ? (
+                    <iframe
+                      src={getYouTubeEmbedUrl(product.videoUrl)!}
+                      title={product.title}
+                      className="w-full h-full border-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video
+                      src={product.videoUrl}
+                      controls
+                      className="w-full h-full object-contain"
+                    >
+                      Your browser does not support playing HTML5 video.
+                    </video>
+                  )}
                 </div>
               </div>
             )}
@@ -399,7 +410,7 @@ export default function ProductDetailClient({
                   </div>
 
                   <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-900">
-                    <span className="text-[11px] font-mono text-slate-500">Ref: TCP-{relProduct.id}</span>
+                    <span className="text-[11px] font-mono text-slate-500">Ref: EWS-{relProduct.id}</span>
                     <Link
                       href={`/products/${relProduct.id}`}
                       className="px-4 py-2 bg-slate-900 hover:bg-brand-orange text-slate-200 hover:text-white rounded text-xs font-semibold transition-all duration-200 flex items-center gap-1.5"

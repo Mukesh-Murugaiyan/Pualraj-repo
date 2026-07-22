@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: ProductPageProps) {
 
   if (!product) {
     return {
-      title: "Product Not Found | TCP Automation",
+      title: "Product Not Found | Electra Weighing Systems (EWS)",
     };
   }
 
   return {
-    title: `${product.title} - ${product.category} | TCP Automation`,
+    title: `${product.title} - ${product.category} | Electra Weighing Systems (EWS)`,
     description: product.desc,
   };
 }

@@ -5,21 +5,21 @@ import { useState, useEffect } from "react";
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "TCP Automation designed and integrated our robotic pick-and-place cell. The system has been running 3 shifts a day for over a year with zero major breakdowns. Our cycle efficiency went up by 22%. They are our preferred automation partner.",
+      quote: "Electra Weighing Systems (EWS) designed and integrated our dynamic inline checkweigher and hopper batching line. The system has been running 3 shifts a day with zero calibration drift. Our filling accuracy reached ±0.01g.",
       author: "Robert Miller",
       title: "VP of Operations",
-      company: "Apex Auto Components",
+      company: "Apex Process Industries",
       rating: 5,
     },
     {
-      quote: "We needed a custom conveyor indexing line for our pharmaceutical capping machine that complied with strict cleanroom standards. TCP delivered a stainless steel modular design that cleared validation on the first pass. Highly recommended.",
+      quote: "We needed a custom SS316L liquid dispensing and load cell weighing platform that complied with FDA cleanroom standards. EWS delivered a stainless steel system that cleared OIML validation on the first pass.",
       author: "Dr. Sarah Lin",
       title: "Plant Manager",
       company: "BioMed Laboratories",
       rating: 5,
     },
     {
-      quote: "Our aging packaging lines were bottlenecking output. TCP retrofitted the legacy controls with modern Siemens PLCs and wrote a custom SCADA dashboard. The process was completed within a week of scheduled downtime. Outstanding service.",
+      quote: "Our bulk silo packaging lines were bottlenecking throughput. EWS retrofitted our legacy hoppers with high-speed digital strain gauge load cells and custom SCADA dashboards. Outstanding service and engineering accuracy.",
       author: "Marcus Vance",
       title: "Head of Engineering",
       company: "Nova Pack Foods",

@@ -63,7 +63,7 @@ export default function About() {
 
   const values = [
     {
-      title: "Precision Engineering",
+      title: "Advanced Engineering",
       desc: "Our designs are engineered down to the micron. We ensure that components align perfectly for highly repeatable, high-accuracy operation.",
       svg: (
         <svg className="w-8 h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,14 +98,14 @@ export default function About() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
-            Company Overview
+            Company Profile & Engineering Excellence
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Leading the Evolution in Industrial Automation
+            Electra Weighing Systems (EWS)
           </h2>
           <div className="w-16 h-1 bg-brand-orange mx-auto rounded" />
           <p className="text-slate-400 font-light leading-relaxed">
-            TCP Automation is a premium engineering firm specializing in custom-built Special Purpose Machines (SPM), conveyor networks, and robotic integration. We transform complex manufacturing workflows into highly efficient, high-performance automated systems.
+            Electra Weighing Systems (EWS) is an ISO 9001:2015 certified engineering pioneer specializing in high-accuracy industrial weighing machines, digital strain gauge load cell technology, dynamic inline checkweighers, hopper batching rigs, and custom Special Purpose Machines (SPM).
           </p>
         </div>
 
@@ -113,13 +113,13 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
           <div className="lg:col-span-6 space-y-6 text-slate-300 font-light leading-relaxed">
             <h3 className="text-2xl font-bold text-white tracking-tight">
-              Designing the Future of Manufacturing
+              Pioneering Heavy Industrial & Automated Weighing Solutions
             </h3>
             <p>
-              Since our inception, we have partnered with market leaders in the automotive, pharmaceutical, FMCG, and warehousing sectors to solve bottleneck challenges. We offer a comprehensive suite of services ranging from initial system consultancy and 3D modeling to structural fabrication, electrical control wiring, and site commissioning.
+              Founded with a mission to deliver zero-error mass measurement across process manufacturing, Electra Weighing Systems (EWS) designs bespoke weighing systems for pharmaceutical cleanrooms, chemical batching plants, agricultural grain processing mills, and heavy metal foundries.
             </p>
             <p>
-              By implementing smart sensors and modular assembly architectures, our machines are fully optimized for data tracking, remote diagnostics, and energy conservation. Whether you require a standalone conveyor belt or a fully synchronized multi-axis robotic cell, TCP Automation delivers.
+              By combining IP68/IP69K hermetically sealed stainless steel load cells, ultra-fast 4800Hz digital ADCs, and custom PLC/SCADA control algorithms, EWS machines ensure legal-for-trade OIML Class III & NTEP accuracy under extreme thermal and mechanical vibration conditions.
             </p>
           </div>
 
@@ -130,7 +130,7 @@ export default function About() {
                 {stats.years}+
               </span>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
-                Years of Excellence
+                Years of Innovation
               </span>
             </div>
             <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-blue/30 transition-colors">
@@ -138,7 +138,7 @@ export default function About() {
                 {stats.projects}+
               </span>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
-                Automated Systems Built
+                EWS Systems Installed
               </span>
             </div>
             <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-blue/30 transition-colors">
@@ -146,7 +146,7 @@ export default function About() {
                 {stats.engineers}+
               </span>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
-                Skilled Tech Experts
+                Weighing Specialists
               </span>
             </div>
             <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-orange/30 transition-colors">
@@ -154,8 +154,96 @@ export default function About() {
                 {stats.satisfaction}%
               </span>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
-                Client Satisfaction
+                Calibration Accuracy Pass Rate
               </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Deep Explanation Section for Electra Weighing Systems (EWS) */}
+        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 sm:p-12 mb-20 relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="max-w-4xl mx-auto space-y-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+              <div>
+                <span className="text-xs font-mono font-bold text-brand-orange uppercase tracking-widest">
+                  Technical Architecture
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-1">
+                  Full Explanation of Electra Weighing Systems (EWS) Technology
+                </h3>
+              </div>
+              <span className="px-3 py-1 bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-mono font-bold rounded-full whitespace-nowrap">
+                ISO 9001:2015 & OIML R60
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-slate-300 leading-relaxed font-light">
+              <div className="space-y-4">
+                <h4 className="text-base font-bold text-white flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-brand-orange" />
+                  1. High-Accuracy Digital Load Cell Sensor Network
+                </h4>
+                <p>
+                  EWS utilizes premium strain-gauge and quartz piezo load sensors capable of micro-gram sensitivity. Each cell is coupled to an EWS multi-channel digital transducer that performs active temperature compensation, anti-vibration FFT filtering, and zero-point drift suppression.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-base font-bold text-white flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-brand-orange" />
+                  2. Dynamic High-Speed Inline Checkweighers
+                </h4>
+                <p>
+                  Built for high-volume production lines, EWS dynamic weighers weigh items on moving belts at speeds exceeding 220 packs per minute with a standard deviation under ±0.1g. Integrated rejection mechanisms (pneumatic arm, air blast, drop belt) eliminate non-conforming items instantly.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-base font-bold text-white flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-brand-orange" />
+                  3. Automated Batching, Hopper & Silo Systems
+                </h4>
+                <p>
+                  EWS Loss-in-Weight and Gain-in-Weight micro-dosing systems meter precise ratios of powders, liquids, and bulk solids. Outfitted with electro-pneumatic slide gates, screw feeders, and pneumatic vibrators, EWS hoppers deliver repeatable ingredient blending.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-base font-bold text-white flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-brand-orange" />
+                  4. Industry 4.0 Telemetry & ERP Integration
+                </h4>
+                <p>
+                  Every EWS weighing terminal supports Ethernet/IP, Profinet, Modbus TCP, and OPC UA protocols. Real-time batch logs, weight histograms, and calibration audit trails are pushed automatically to SAP, Oracle ERP, or cloud monitoring dashboards.
+                </p>
+              </div>
+            </div>
+
+            {/* EWS Specifications Summary Matrix */}
+            <div className="mt-8 pt-8 border-t border-slate-800">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">
+                EWS Standard Engineering Specifications
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+                <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                  <span className="text-slate-500 block text-[10px]">CAPACITY RANGE</span>
+                  <span className="text-white font-bold">10 g to 500 Tons</span>
+                </div>
+                <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                  <span className="text-slate-500 block text-[10px]">ACCURACY CLASS</span>
+                  <span className="text-brand-orange font-bold">OIML C3 / C6 Class</span>
+                </div>
+                <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                  <span className="text-slate-500 block text-[10px]">INGRESS PROTECTION</span>
+                  <span className="text-white font-bold">IP68 / IP69K (SS316L)</span>
+                </div>
+                <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                  <span className="text-slate-500 block text-[10px]">SAMPLING RATE</span>
+                  <span className="text-brand-ice font-bold">4,800 conv/sec</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

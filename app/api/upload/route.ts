@@ -1,8 +1,65 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import R2Service from "@/services/R2Service";
 
-export const POST = async (req: NextRequest) => {
+export const dynamic = "force-dynamic";
+export const maxDuration = 60; // Allow up to 60 seconds execution time
+
+/**
+ * GET /api/upload?filename=video.mp4&contentType=video/mp4&folder=products
+ * Generates a presigned PUT URL so the browser can upload large files (videos up to 500MB+) directly to Cloudflare R2!
+ */
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const filename = searchParams.get("filename");
+    const contentType = searchParams.get("contentType") || "application/octet-stream";
+    const folder = searchParams.get("folder") || "products";
+
+    if (!filename) {
+      return NextResponse.json({ error: "Filename parameter is required" }, { status: 400 });
+    }
+
+    const config = R2Service.getR2Config();
+    const client = R2Service.getClientConfig();
+
+    const sanitizedFilename = filename.replace(/[^a-zA-Z0-9.-]/g, "_");
+    const fileKey = `${folder}/${Date.now()}-${sanitizedFilename}`;
+
+    const command = new PutObjectCommand({
+      Bucket: config.bucket || "",
+      Key: fileKey,
+      ContentType: contentType,
+    });
+
+    // Generate signed URL valid for 1 hour (3600s)
+    const presignedUrl = await getSignedUrl(client, command, { expiresIn: 3600 });
+
+    const baseUrl = config.publicUrl
+      ? config.publicUrl.replace(/\/$/, "")
+      : `${config.endpoint}/${config.bucket}`;
+
+    const publicUrl = `${baseUrl}/${fileKey}`;
+
+    return NextResponse.json({
+      success: true,
+      presignedUrl,
+      publicUrl,
+      fileKey,
+      message: "Presigned URL generated successfully",
+    });
+  } catch (err: any) {
+    console.error("Presigned URL Generation Error:", err);
+    return NextResponse.json({ error: err.message || "Failed to generate upload URL" }, { status: 500 });
+  }
+}
+
+/**
+ * POST /api/upload
+ * Fallback multipart upload handler for smaller/medium images & files
+ */
+export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
 
@@ -65,11 +122,11 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json(
         {
           error:
-            "Cloudflare R2 Access Denied (403): The R2_ACCESS_KEY or R2_SECRET_KEY in .env is invalid or lacks Object Write permissions. Please create a new R2 API Token in Cloudflare Dashboard -> R2 -> Manage R2 API Tokens with 'Object Read & Write' permission for 'pualraj-bucket', then update R2_ACCESS_KEY and R2_SECRET_KEY in .env.local",
+            "Cloudflare R2 Access Denied (403): The R2_ACCESS_KEY or R2_SECRET_KEY in .env is invalid or lacks Object Write permissions.",
         },
         { status: 403 }
       );
     }
     return NextResponse.json({ error: err.message || "Upload failed" }, { status: 500 });
   }
-};
+}

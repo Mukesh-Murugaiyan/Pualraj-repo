@@ -1,1 +1,33 @@
-[]
+[
+  {
+    "id": "ifuytrytuyiuoioj",
+    "title": "ifuytrytuyiuoioj",
+    "subtitle": "kjbioyfotdt7dft7fdoub",
+    "category": "Material Transport",
+    "desc": "ihvbyiygyg8087iygutf",
+    "fullDescription": "khbvyug8tf8yfyhivgufguftf",
+    "image": "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/main/1784552280847-IMG_5661.jpeg",
+    "gallery": [
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/main/1784552280847-IMG_5661.jpeg",
+      "https://pub-444a1b4cc3e048e2a669b43e665bb941.r2.dev/gallery/1784701990976-IMG_5660.jpeg"
+    ],
+    "videoUrl": "https://youtu.be/r-98YRAF1dY?si=p1EvyjTj2vSYOL69",
+    "features": [
+      "Precision indexing timetable",
+      "High-torque servo actuators",
+      "Integrated sensor quality checks"
+    ],
+    "specs": {
+      "Cycle Time": "2.0 - 4.0 seconds",
+      "Frame Structure": "Heavy Duty Steel"
+    },
+    "applications": [
+      "Automotive Assembly",
+      "Industrial Packaging"
+    ],
+    "benefits": [
+      "Reduces cycle time by 50%",
+      "Zero-defect inline verification"
+    ]
+  }
+]

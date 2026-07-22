@@ -96,12 +96,17 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
               href="/"
               className="flex items-center gap-2.5 group"
             >
-              <div className="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center font-bold text-white text-xl tracking-tight shadow-md shadow-brand-orange/30 group-hover:scale-105 transition-transform">
-                TCP
+              <div className="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center font-extrabold text-white text-lg tracking-tight shadow-md shadow-brand-orange/30 group-hover:scale-105 transition-transform">
+                EWS
               </div>
-              <span className="text-xl font-bold tracking-wider text-white">
-                AUTOMATION
-              </span>
+              <div className="flex flex-col">
+                <span className="text-lg font-extrabold tracking-wider text-white leading-none">
+                  ELECTRA WEIGHING
+                </span>
+                <span className="text-[10px] font-mono text-brand-orange tracking-widest uppercase mt-0.5">
+                  SYSTEMS & AUTOMATION
+                </span>
+              </div>
             </Link>
           </div>
 

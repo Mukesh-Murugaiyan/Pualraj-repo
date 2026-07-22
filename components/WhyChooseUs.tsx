@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
           <div className="lg:col-span-7 space-y-8">
             <div>
               <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
-                Why Choose TCP Automation
+                Why Choose Electra Weighing Systems (EWS)
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">
                 Engineered for Reliability and Maximum Efficiency

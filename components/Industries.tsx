@@ -29,8 +29,8 @@ export default function Industries() {
     },
     {
       title: "Pharmaceuticals",
-      desc: "Aseptic packaging assembly systems, precision liquid syringe filling equipment, and cleanroom sorting conveyors complying with FDA specifications.",
-      features: ["FDA cleanroom compliance", "High-precision dosing", "Vision code validation"],
+      desc: "Aseptic packaging assembly systems, automated liquid syringe filling equipment, and cleanroom sorting conveyors complying with FDA specifications.",
+      features: ["FDA cleanroom compliance", "High-accuracy dosing", "Vision code validation"],
       bgGlow: "group-hover:border-emerald-500/20",
       accent: "text-emerald-500 bg-emerald-500/10",
       icon: (
@@ -53,7 +53,7 @@ export default function Industries() {
     },
     {
       title: "Electronics & Semis",
-      desc: "Electrostatic discharge (ESD) safe workspaces, precision automatic micro-screwing robots, and multi-sensor functional PCB test beds.",
+      desc: "Electrostatic discharge (ESD) safe workspaces, high-speed automatic micro-screwing robots, and multi-sensor functional PCB test beds.",
       features: ["ESD-safe design standards", "Automatic micro-screwing", "Dual-camera optical inspection"],
       bgGlow: "group-hover:border-purple-500/20",
       accent: "text-purple-500 bg-purple-500/10",

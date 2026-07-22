@@ -47,18 +47,18 @@ export default function Hero({ onOpenQuote }: HeroProps) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
               </span>
-              Industry 4.0 Pioneers
+              EWS - Electra Weighing Systems
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight select-none">
               Smart Industrial <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-ice glow-text-blue">
-                Automation Solutions
+                Weighing & Automation
               </span>
             </h1>
 
             <p className="text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-              We Design and Manufacture Special Purpose Machines (SPM), PLC Automation, Conveyor Systems, Robotic Automation and Custom Industrial Machines.
+              Electra Weighing Systems (EWS) manufactures high-accuracy industrial weighing machinery, load cell instrumentation, dynamic checkweighers, hopper batching towers, and custom SPM automation systems.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
@@ -66,30 +66,33 @@ export default function Hero({ onOpenQuote }: HeroProps) {
                 onClick={onOpenQuote}
                 className="w-full sm:w-auto px-8 py-4 bg-brand-orange hover:bg-orange-500 text-white font-bold rounded shadow-lg shadow-brand-orange/30 hover:shadow-brand-orange/50 transition-all hover:-translate-y-0.5 active:translate-y-0 text-center cursor-pointer"
               >
-                Get Quote
+                Request EWS Quote
               </button>
               <a
-                href="#contact"
-                onClick={handleScrollToContact}
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="w-full sm:w-auto px-8 py-4 bg-slate-900/80 hover:bg-slate-800 text-white border border-slate-700/80 font-semibold rounded hover:border-slate-500 transition-all hover:-translate-y-0.5 active:translate-y-0 text-center cursor-pointer"
               >
-                Contact Us
+                Learn About EWS
               </a>
             </div>
 
             {/* Micro Feature highlights */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-800 max-w-lg mx-auto lg:mx-0">
               <div>
-                <p className="text-2xl font-bold text-white tracking-tight">15+</p>
-                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Years Exp</p>
+                <p className="text-2xl font-bold text-white tracking-tight">25+</p>
+                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Years in Weighing</p>
               </div>
               <div className="border-x border-slate-800/80 px-4">
-                <p className="text-2xl font-bold text-white tracking-tight">150+</p>
-                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Machines Built</p>
+                <p className="text-2xl font-bold text-white tracking-tight">500+</p>
+                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Weighers Installed</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-white tracking-tight">100%</p>
-                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Custom Design</p>
+                <p className="text-2xl font-bold text-white tracking-tight">0.001g</p>
+                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Max Resolution</p>
               </div>
             </div>
           </div>
@@ -104,7 +107,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-brand-orange animate-ping" />
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    System Telemetry
+                    EWS Controller Telemetry
                   </span>
                 </div>
                 <span className="text-[10px] font-mono text-brand-ice bg-brand-ice/10 px-2 py-0.5 rounded">
@@ -115,34 +118,34 @@ export default function Hero({ onOpenQuote }: HeroProps) {
               {/* Body stats */}
               <div className="space-y-4 font-mono text-xs text-slate-300">
                 <div className="flex items-center justify-between">
-                  <span>PLC STATUS</span>
-                  <span className="text-green-400 font-semibold">CONNECTED [OK]</span>
+                  <span>LOAD CELL STATUS</span>
+                  <span className="text-green-400 font-semibold">CALIBRATED [OK]</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>ROBOT COORDINATES</span>
-                  <span className="text-slate-400">X: 184.2, Y: -93.8, Z: 512.4</span>
+                  <span>WEIGHING ACCURACY</span>
+                  <span className="text-slate-400 font-bold text-brand-ice">± 0.01% F.S.</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span>CYCLE EFFICIENCY</span>
-                  <span className="text-brand-orange font-bold">98.7%</span>
+                  <span>CHECKWEIGHER SPEED</span>
+                  <span className="text-brand-orange font-bold">220 packs/min</span>
                 </div>
 
                 {/* Progress bar mock */}
                 <div>
                   <div className="flex items-center justify-between mb-1 text-[10px] text-slate-500">
-                    <span>ASSEMBLY LINE SPEED</span>
-                    <span>1.2 m/s</span>
+                    <span>BATCHING HOPPER FILL RATE</span>
+                    <span>45.2 kg/s</span>
                   </div>
                   <div className="w-full bg-slate-900 h-2 rounded overflow-hidden">
-                    <div className="bg-gradient-to-r from-brand-blue to-brand-ice h-full w-[80%] animate-pulse" />
+                    <div className="bg-gradient-to-r from-brand-blue to-brand-ice h-full w-[85%] animate-pulse" />
                   </div>
                 </div>
 
                 {/* Diagnostics logs */}
                 <div className="bg-slate-900/60 border border-slate-800/80 rounded p-3 text-[10px] text-slate-400 space-y-1">
-                  <div className="text-brand-ice">[15:19:02] Initializing PLC logic...</div>
-                  <div className="text-slate-300">[15:19:03] Conveyor safety interlocks armed.</div>
-                  <div className="text-brand-orange">[15:19:05] Robot cell calibration verified.</div>
+                  <div className="text-brand-ice">[11:45:02] EWS Digital Digitizer synced...</div>
+                  <div className="text-slate-300">[11:45:03] Tare weight zeroed: 0.000 kg</div>
+                  <div className="text-brand-orange">[11:45:05] OIML Class III verification pass.</div>
                 </div>
               </div>
             </div>

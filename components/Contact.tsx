@@ -38,7 +38,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-slate-950 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
@@ -55,7 +55,7 @@ export default function Contact() {
 
         {/* Contact Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
+
           {/* Details & Form Column */}
           <div className="lg:col-span-7 bg-slate-900/40 border border-slate-800 rounded-xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
             {!isSubmitted ? (
@@ -83,7 +83,7 @@ export default function Contact() {
                       required
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="e.g. TCP Industries"
+                      placeholder="e.g. Electra Industries"
                       className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded focus:border-brand-orange focus:outline-none transition-colors text-sm"
                     />
                   </div>
@@ -111,7 +111,7 @@ export default function Contact() {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="e.g. +1 (555) 019-2834"
+                      placeholder="e.g. +91 9566962031"
                       className="w-full px-4 py-3 bg-slate-950 border border-slate-800 text-white rounded focus:border-brand-orange focus:outline-none transition-colors text-sm"
                     />
                   </div>
@@ -186,22 +186,48 @@ export default function Contact() {
 
           {/* Contact Coordinates & Map Column */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            
+
             {/* Quick Contacts */}
             <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-6 shadow-2xl space-y-4">
-              <div className="flex gap-4 items-center">
-                <div className="p-3 bg-brand-orange/10 text-brand-orange rounded-lg">
+              {/* Director 1 - Paulraj.S */}
+              <div className="flex gap-4 items-start">
+                <div className="p-3 bg-brand-orange/10 text-brand-orange rounded-lg flex-shrink-0 mt-0.5">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                    Direct Call
+                    Director 1 — Paulraj.S
                   </h4>
-                  <a href="tel:+15550192834" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
-                    +1 (555) 019-2834
-                  </a>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-1">
+                    <a href="tel:+919566962031" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
+                      +91 9566962031
+                    </a>
+                    <span className="hidden sm:inline text-slate-600">•</span>
+                    <a href="tel:+919943182031" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
+                      +91 9943182031
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Director 2 - Silambarasan.R */}
+              <div className="flex gap-4 items-start border-t border-slate-850 pt-4">
+                <div className="p-3 bg-brand-orange/10 text-brand-orange rounded-lg flex-shrink-0 mt-0.5">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    Director 2 — Silambarasan.R
+                  </h4>
+                  <div className="flex items-center gap-2 mt-1">
+                    <a href="tel:+916361763911" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
+                      +91 6361763911
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -215,8 +241,8 @@ export default function Contact() {
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     Technical Sales Email
                   </h4>
-                  <a href="mailto:sales@tcpautomation.com" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
-                    sales@tcpautomation.com
+                  <a href="mailto:sales@electraweighing.com" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
+                    sales@electraweighing.com
                   </a>
                 </div>
               </div>
@@ -230,10 +256,10 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                    HQ Coordinates
+                    HQ Coordinates / Factory Address
                   </h4>
-                  <span className="text-xs text-slate-300 leading-relaxed font-light">
-                    Plot No. 42, Sector-5, Industrial Growth Centre, Automation Hub, CA 94103
+                  <span className="text-xs text-slate-300 leading-relaxed font-light block mt-0.5">
+                    NO.75 GNT Road, Thatchur Cross Road, Panjettty Post, Ponneri (TK), Thiruvallur Dist-601 204.
                   </span>
                 </div>
               </div>
@@ -242,7 +268,7 @@ export default function Contact() {
             {/* Map Frame wrapper with dark industrial filter styling */}
             <div className="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden h-[250px] shadow-2xl relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5627913508107!2d-122.41941668468233!3d37.77492927975923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807d6d34e2c9%3A0xc47e3a936a0f443b!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1633000000000!5m2!1sen!2sus"
+                src="https://maps.google.com/maps?q=NO.75+GNT+Road,+Thatchur+Cross+Road,+Panjetty+Post,+Ponneri+TK,+Thiruvallur+Dist+601204&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: "grayscale(1) invert(0.9) contrast(1.2)" }}
@@ -250,7 +276,7 @@ export default function Contact() {
                 loading="lazy"
               />
             </div>
-            
+
           </div>
 
         </div>
