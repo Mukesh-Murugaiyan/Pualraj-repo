@@ -31,7 +31,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-[#0B192C]/90 to-slate-950/60" />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-transparent to-slate-950/90" />
-        
+
         {/* Glow decorative balls */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-ice/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl" />
@@ -39,7 +39,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Text Area */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6 sm:space-y-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-semibold uppercase tracking-wider animate-fade-in">
@@ -83,17 +83,17 @@ export default function Hero({ onOpenQuote }: HeroProps) {
             {/* Micro Feature highlights */}
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-800 max-w-lg mx-auto lg:mx-0">
               <div>
-                <p className="text-2xl font-bold text-white tracking-tight">25+</p>
+                <p className="text-2xl font-bold text-white tracking-tight">15+</p>
                 <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Years in Weighing</p>
               </div>
               <div className="border-x border-slate-800/80 px-4">
-                <p className="text-2xl font-bold text-white tracking-tight">500+</p>
+                <p className="text-2xl font-bold text-white tracking-tight">150+</p>
                 <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Weighers Installed</p>
               </div>
-              <div>
+              {/* <div>
                 <p className="text-2xl font-bold text-white tracking-tight">0.001g</p>
                 <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Max Resolution</p>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -101,7 +101,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
           <div className="lg:col-span-5 hidden lg:block animate-slide-up">
             <div className="relative mx-auto max-w-sm rounded-xl border border-slate-800 bg-slate-950/80 p-6 shadow-2xl shadow-black/80 backdrop-blur-md overflow-hidden group hover:border-brand-blue/50 transition-all duration-500">
               <div className="absolute top-0 right-0 w-24 h-24 bg-brand-ice/5 rounded-full blur-xl group-hover:bg-brand-ice/15 transition-all" />
-              
+
               {/* Header */}
               <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
                 <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
 

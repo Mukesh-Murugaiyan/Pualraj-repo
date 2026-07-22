@@ -102,10 +102,12 @@ export default function ProductModal({
 
   // --- Smart Large File Uploader (Supports Large Videos & High-Res Images up to 500MB+) ---
   const uploadFileSmart = async (file: File, folder: string): Promise<string> => {
+    const fileType = file.type || (file.name.endsWith(".mov") ? "video/quicktime" : file.name.endsWith(".mp4") ? "video/mp4" : "application/octet-stream");
+
     // Strategy 1: Attempt Presigned Direct Upload to Cloudflare R2 (Bypasses server body limits)
     try {
       const presignedRes = await fetch(
-        `/api/upload?filename=${encodeURIComponent(file.name)}&contentType=${encodeURIComponent(file.type || "application/octet-stream")}&folder=${encodeURIComponent(folder)}`
+        `/api/upload?filename=${encodeURIComponent(file.name)}&contentType=${encodeURIComponent(fileType)}&folder=${encodeURIComponent(folder)}`
       );
       if (presignedRes.ok) {
         const presignedData = await presignedRes.json();
@@ -113,21 +115,23 @@ export default function ProductModal({
           const directUploadRes = await fetch(presignedData.presignedUrl, {
             method: "PUT",
             headers: {
-              "Content-Type": file.type || "application/octet-stream",
+              "Content-Type": fileType,
             },
             body: file,
           });
 
           if (directUploadRes.ok) {
             return presignedData.publicUrl;
+          } else {
+            console.warn(`Direct R2 PUT failed with status ${directUploadRes.status}. Falling back to POST /api/upload...`);
           }
         }
       }
     } catch (presignedErr) {
-      console.warn("Direct R2 presigned upload failed, attempting API POST upload:", presignedErr);
+      console.warn("Direct R2 presigned upload failed (likely R2 Bucket CORS missing). Falling back to API POST upload:", presignedErr);
     }
 
-    // Strategy 2: Fallback to POST /api/upload
+    // Strategy 2: Fallback to POST /api/upload (Server API route)
     const formData = new FormData();
     formData.append("file", file);
     formData.append("folder", folder);
@@ -139,7 +143,12 @@ export default function ProductModal({
 
     const data = await res.json();
     if (!res.ok) {
-      throw new Error(data.error || `Failed to upload ${file.name}`);
+      throw new Error(
+        data.error ||
+          (res.status === 413
+            ? "File is too large for server API upload limit. Please enable CORS on Cloudflare R2 bucket for direct browser upload."
+            : `Failed to upload ${file.name}`)
+      );
     }
 
     return data.url;
