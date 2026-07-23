@@ -22,7 +22,7 @@ export default function ProductDetailClient({
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string>(product.image);
   const [activeTab, setActiveTab] = useState<"video" | "specs" | "features" | "apps" | "benefits">(
-    product.videoUrl ? "video" : "specs"
+    "specs"
   );
 
   return (
@@ -269,7 +269,7 @@ export default function ProductDetailClient({
                       src={getYouTubeEmbedUrl(product.videoUrl)!}
                       title={product.title}
                       className="w-full h-full border-0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
                   ) : (

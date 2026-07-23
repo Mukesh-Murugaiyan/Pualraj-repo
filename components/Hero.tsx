@@ -87,7 +87,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
                 <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Years in Weighing</p>
               </div>
               <div className="border-x border-slate-800/80 px-4">
-                <p className="text-2xl font-bold text-white tracking-tight">150+</p>
+                <p className="text-2xl font-bold text-white tracking-tight">700+</p>
                 <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Weighers Installed</p>
               </div>
               {/* <div>
