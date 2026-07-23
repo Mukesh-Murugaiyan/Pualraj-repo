@@ -16,7 +16,7 @@ export function getYouTubeEmbedUrl(url: string | undefined | null): string | nul
 
   if (match && match[2].length === 11) {
     const videoId = match[2];
-    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
   }
 
   if (trimmed.includes("youtube.com/embed/")) {

@@ -34,7 +34,7 @@ export default function About() {
 
           setStats({
             years: Math.floor(easeProgress * 15),
-            projects: Math.floor(easeProgress * 150),
+            projects: Math.floor(easeProgress * 700),
             engineers: Math.floor(easeProgress * 45),
             satisfaction: Math.floor(easeProgress * 99),
           });
@@ -44,7 +44,7 @@ export default function About() {
           } else {
             setStats({
               years: 5,
-              projects: 150,
+              projects: 700,
               engineers: 15,
               satisfaction: 99,
             });
