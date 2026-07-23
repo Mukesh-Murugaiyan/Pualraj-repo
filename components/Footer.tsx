@@ -36,14 +36,14 @@ export default function Footer() {
               Sitemap
             </h4>
             <ul className="space-y-2 text-xs">
-              {["home", "about", "products", "services", "projects", "gallery", "contact"].map((link) => (
+              {["home", "about", "products", "services", "why-us", "contact"].map((link) => (
                 <li key={link}>
                   <a
                     href={`#${link}`}
                     onClick={(e) => handleNavClick(e, link)}
                     className="hover:text-brand-orange capitalize transition-colors"
                   >
-                    {link}
+                    {link === "why-us" ? "Why Us" : link}
                   </a>
                 </li>
               ))}

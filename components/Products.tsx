@@ -58,9 +58,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
 
         {/* Loading Skeleton State until products are fetched */}
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <CardSkeleton count={3} />
-          </div>
+          <CardSkeleton count={3} />
         ) : (
           /* Responsive Product Grid: 1 Column on Mobile (One-by-One), 2 on Tablet, 3 on Web View */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

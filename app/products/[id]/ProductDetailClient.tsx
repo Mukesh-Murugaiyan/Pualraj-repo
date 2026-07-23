@@ -88,14 +88,14 @@ export default function ProductDetailClient({
                   <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">
                     Real Factory Photos ({product.gallery.length} Shots Available):
                   </span>
-                  <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+                  <div className="flex gap-3 overflow-x-auto p-1.5 no-scrollbar items-center">
                     {product.gallery.map((img, idx) => (
                       <button
                         key={idx}
                         onClick={() => setSelectedImage(img)}
                         className={`relative w-20 h-16 rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all cursor-pointer ${
                           selectedImage === img
-                            ? "border-brand-orange scale-105 shadow-md shadow-brand-orange/30"
+                            ? "border-brand-orange ring-2 ring-brand-orange/50 ring-offset-1 ring-offset-slate-950 opacity-100 shadow-lg shadow-brand-orange/30"
                             : "border-slate-800 opacity-70 hover:opacity-100 hover:border-slate-600"
                         }`}
                       >
