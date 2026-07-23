@@ -17,9 +17,10 @@ let mysqlPool: mysql.Pool | null = null;
 if (databaseUrl) {
   if (databaseUrl.startsWith('postgres://') || databaseUrl.startsWith('postgresql://')) {
     try {
+      const needsSsl = databaseUrl.includes('neon.tech') || databaseUrl.includes('sslmode=require') || databaseUrl.includes('amazonaws.com') || process.env.NODE_ENV === 'production';
       pgPool = new PgPool({
         connectionString: databaseUrl,
-        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        ssl: needsSsl ? { rejectUnauthorized: false } : false,
       });
       console.log('PostgreSQL database pool initialized.');
     } catch (err) {
@@ -129,10 +130,27 @@ function saveLocalProducts(products: Product[]) {
   }
 }
 
+// Memory Cache Management
+let cachedProducts: Product[] | null = null;
+let cacheTimestamp = 0;
+const CACHE_TTL_MS = 60 * 1000; // 60 seconds TTL
+
+export function invalidateProductCache() {
+  cachedProducts = null;
+  cacheTimestamp = 0;
+}
+
 /**
- * Fetch all products (Primary: PostgreSQL / MySQL -> Secondary: Cloudflare R2 -> Fallback: Local JSON)
+ * Fetch all products (Primary: Memory Cache -> PostgreSQL / MySQL -> Cloudflare R2 -> Fallback: Local JSON)
  */
-export async function getAllProductsFromDb(): Promise<Product[]> {
+export async function getAllProductsFromDb(options?: { forceFresh?: boolean }): Promise<Product[]> {
+  const forceFresh = options?.forceFresh ?? false;
+  const now = Date.now();
+
+  if (!forceFresh && cachedProducts !== null && (now - cacheTimestamp) < CACHE_TTL_MS) {
+    return cachedProducts;
+  }
+
   await ensureSqlTable();
 
   // 1. PostgreSQL Strategy
@@ -140,7 +158,7 @@ export async function getAllProductsFromDb(): Promise<Product[]> {
     try {
       const res = await pgPool.query('SELECT * FROM products ORDER BY created_at DESC');
       if (res.rows && res.rows.length > 0) {
-        return res.rows.map((row) => ({
+        const products = res.rows.map((row) => ({
           id: row.id,
           title: row.title,
           subtitle: row.subtitle || '',
@@ -155,6 +173,9 @@ export async function getAllProductsFromDb(): Promise<Product[]> {
           applications: parseJsonField<string[]>(row.applications, []),
           benefits: parseJsonField<string[]>(row.benefits, []),
         }));
+        cachedProducts = products;
+        cacheTimestamp = Date.now();
+        return products;
       }
     } catch (err) {
       console.error('Error fetching products from PostgreSQL:', err);
@@ -166,7 +187,7 @@ export async function getAllProductsFromDb(): Promise<Product[]> {
     try {
       const [rows] = await mysqlPool.query<any[]>('SELECT * FROM products ORDER BY created_at DESC');
       if (rows && rows.length > 0) {
-        return rows.map((row) => ({
+        const products = rows.map((row) => ({
           id: row.id,
           title: row.title,
           subtitle: row.subtitle || '',
@@ -181,6 +202,9 @@ export async function getAllProductsFromDb(): Promise<Product[]> {
           applications: parseJsonField<string[]>(row.applications, []),
           benefits: parseJsonField<string[]>(row.benefits, []),
         }));
+        cachedProducts = products;
+        cacheTimestamp = Date.now();
+        return products;
       }
     } catch (err) {
       console.error('Error fetching products from MySQL:', err);
@@ -191,11 +215,18 @@ export async function getAllProductsFromDb(): Promise<Product[]> {
   if (isR2Configured) {
     const r2Products = await fetchProductsFromR2();
     if (r2Products && r2Products.length > 0) {
+      cachedProducts = r2Products;
+      cacheTimestamp = Date.now();
       return r2Products;
     }
   }
 
-  return getLocalProducts();
+  const localProducts = getLocalProducts();
+  if (localProducts.length > 0) {
+    cachedProducts = localProducts;
+    cacheTimestamp = Date.now();
+  }
+  return localProducts;
 }
 
 /**
@@ -298,6 +329,7 @@ export async function saveProductToDb(newProduct: Product): Promise<Product> {
   }
 
   saveLocalProducts(updatedList);
+  invalidateProductCache();
   return productToSave;
 }
 
@@ -387,6 +419,7 @@ export async function updateProductInDb(id: string, updatedData: Partial<Product
   }
 
   saveLocalProducts(products);
+  invalidateProductCache();
   return updatedProduct;
 }
 
@@ -421,5 +454,6 @@ export async function deleteProductFromDb(id: string): Promise<boolean> {
   }
 
   saveLocalProducts(filtered);
+  invalidateProductCache();
   return true;
 }

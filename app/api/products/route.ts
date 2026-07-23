@@ -5,7 +5,8 @@ import {
   getProductFromDbById, 
   saveProductToDb, 
   updateProductInDb, 
-  deleteProductFromDb 
+  deleteProductFromDb,
+  invalidateProductCache
 } from '@/lib/db';
 import { Product } from '@/lib/products';
 
@@ -60,6 +61,7 @@ export async function POST(request: Request) {
     };
 
     const saved = await saveProductToDb(newProduct);
+    invalidateProductCache();
     revalidatePath('/');
     revalidatePath('/api/products');
     return NextResponse.json({ success: true, product: saved }, { status: 201 });
