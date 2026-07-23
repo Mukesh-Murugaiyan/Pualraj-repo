@@ -20,8 +20,7 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
     { id: "about", label: "About" },
     { id: "products", label: "Products" },
     { id: "services", label: "Services" },
-    { id: "projects", label: "Projects" },
-    { id: "gallery", label: "Gallery" },
+    { id: "why-us", label: "Why Us" },
     { id: "contact", label: "Contact" },
   ];
 

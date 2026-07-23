@@ -32,7 +32,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-choose" className="py-24 bg-slate-950">
+    <section id="why-us" className="py-24 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">

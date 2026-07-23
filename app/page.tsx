@@ -8,7 +8,6 @@ import Products from "@/components/Products";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import ProjectsGallery from "@/components/ProjectsGallery";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -32,7 +31,6 @@ export default function Home() {
         <Services />
         <Industries />
         <WhyChooseUs />
-        <ProjectsGallery />
         <Testimonials />
         <Contact />
       </main>
