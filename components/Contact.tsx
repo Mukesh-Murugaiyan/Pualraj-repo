@@ -241,8 +241,8 @@ export default function Contact() {
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     Technical Sales Email
                   </h4>
-                  <a href="mailto:sales@electraweighing.com" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
-                    sales@electraweighing.com
+                  <a href="mailto:ews@electrasystems24.com" className="text-sm font-bold text-white hover:text-brand-orange transition-colors">
+                    ews@electrasystems24.com
                   </a>
                 </div>
               </div>

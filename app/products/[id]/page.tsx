@@ -2,12 +2,20 @@ import { getProducts, getProductById } from "@/lib/products";
 import ProductDetailClient from "./ProductDetailClient";
 import { notFound } from "next/navigation";
 
+export const dynamicParams = true;
+export const revalidate = 60;
+
 // Generate static params for products
 export async function generateStaticParams() {
-  const products = await getProducts();
-  return products.map((product) => ({
-    id: product.id,
-  }));
+  try {
+    const products = await getProducts();
+    return products.map((product) => ({
+      id: product.id,
+    }));
+  } catch (error) {
+    console.error("Error generating static params for products:", error);
+    return [];
+  }
 }
 
 interface ProductPageProps {
