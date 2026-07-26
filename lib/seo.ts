@@ -112,6 +112,8 @@ export function getOrganizationJsonLd() {
 }
 
 export function getLocalBusinessJsonLd() {
+  const mapUrl = 'https://maps.google.com/maps?q=NO.75+GNT+Road,+Thatchur+Cross+Road,+Panjetty+Post,+Ponneri+TK,+Thiruvallur+Dist+601204';
+
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'IndustrialBusiness'],
@@ -121,6 +123,7 @@ export function getLocalBusinessJsonLd() {
     telephone: COMPANY_DETAILS.contact.salesPhone,
     email: COMPANY_DETAILS.contact.email,
     priceRange: '₹₹₹',
+    hasMap: mapUrl,
     address: {
       '@type': 'PostalAddress',
       streetAddress: COMPANY_DETAILS.address.streetAddress,
@@ -144,6 +147,7 @@ export function getLocalBusinessJsonLd() {
     ],
   };
 }
+
 
 export function getWebSiteJsonLd() {
   return {

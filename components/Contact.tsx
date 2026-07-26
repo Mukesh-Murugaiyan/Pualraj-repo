@@ -247,7 +247,11 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex gap-4 items-center border-t border-slate-850 pt-4">
+              <div
+                className="flex gap-4 items-center border-t border-slate-850 pt-4"
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+              >
                 <div className="p-3 bg-brand-orange/10 text-brand-orange rounded-lg">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -258,9 +262,17 @@ export default function Contact() {
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     HQ Coordinates / Factory Address
                   </h4>
-                  <span className="text-xs text-slate-300 leading-relaxed font-light block mt-0.5">
-                    NO.75 GNT Road, Thatchur Cross Road, Panjettty Post, Ponneri (TK), Thiruvallur Dist-601 204.
+                  <span className="text-xs text-slate-300 leading-relaxed font-light block mt-0.5" itemProp="streetAddress">
+                    NO.75 GNT Road, Thatchur Cross Road, Panjetty Post, Ponneri (TK), Thiruvallur Dist-601 204, Tamil Nadu, India.
                   </span>
+                  <a
+                    href="https://maps.google.com/maps?q=NO.75+GNT+Road,+Thatchur+Cross+Road,+Panjetty+Post,+Ponneri+TK,+Thiruvallur+Dist+601204"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-orange hover:underline mt-1"
+                  >
+                    Open in Google Maps & Get Directions &rarr;
+                  </a>
                 </div>
               </div>
             </div>
@@ -268,6 +280,8 @@ export default function Contact() {
             {/* Map Frame wrapper with dark industrial filter styling */}
             <div className="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden h-[250px] shadow-2xl relative">
               <iframe
+                title="Electra Weighing Systems (EWS) Factory & Headquarters Location Map"
+                aria-label="Electra Weighing Systems Google Maps Location"
                 src="https://maps.google.com/maps?q=NO.75+GNT+Road,+Thatchur+Cross+Road,+Panjetty+Post,+Ponneri+TK,+Thiruvallur+Dist+601204&t=&z=14&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
@@ -276,6 +290,7 @@ export default function Contact() {
                 loading="lazy"
               />
             </div>
+
 
           </div>
 
