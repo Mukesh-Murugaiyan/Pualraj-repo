@@ -1,5 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
+
+
+
 export default function Footer() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -12,19 +17,26 @@ export default function Footer() {
   return (
     <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-8 text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
-          
+
           {/* Company Brief */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-brand-orange rounded flex items-center justify-center font-extrabold text-white text-sm tracking-tight">
-                EWS
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-8 relative flex items-center justify-center">
+                <Image
+                  src="/logo.svg"
+                  alt="EWS Logo"
+                  width={40}
+                  height={32}
+                  className="object-contain w-full h-full"
+                />
               </div>
               <span className="text-base font-extrabold tracking-wider text-white">
                 ELECTRA WEIGHING SYSTEMS
               </span>
             </div>
+
             <p className="text-xs sm:text-sm font-light leading-relaxed">
               Electra Weighing Systems (EWS) is a premium manufacturer of high-accuracy industrial weighing machinery, digital load cell instrumentation, dynamic checkweighers, and custom SPM automation systems.
             </p>
@@ -33,22 +45,42 @@ export default function Footer() {
           {/* Quick Sitemap */}
           <div className="lg:col-span-2 space-y-4">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Sitemap
+              Navigation
             </h4>
             <ul className="space-y-2 text-xs">
-              {["home", "about", "products", "services", "why-us", "contact"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link}`}
-                    onClick={(e) => handleNavClick(e, link)}
-                    className="hover:text-brand-orange capitalize transition-colors"
-                  >
-                    {link === "why-us" ? "Why Us" : link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link href="/" className="hover:text-brand-orange transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-brand-orange font-bold text-white transition-colors">
+                  Products Catalog
+                </Link>
+              </li>
+              <li>
+                <Link href="/founders" className="hover:text-brand-orange font-bold text-white transition-colors">
+                  Founders & Leadership
+                </Link>
+              </li>
+              <li>
+                <a href="/#about" className="hover:text-brand-orange transition-colors">
+                  About EWS
+                </a>
+              </li>
+              <li>
+                <a href="/#services" className="hover:text-brand-orange transition-colors">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="/#contact" className="hover:text-brand-orange transition-colors">
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </div>
+
 
           {/* Industry Solutions */}
           <div className="lg:col-span-3 space-y-4">
@@ -101,7 +133,7 @@ export default function Footer() {
               </button>
             </form>
           </div>
-          
+
         </div>
 
         {/* Bottom Bar */}

@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+
 
 interface NavbarProps {
   onOpenQuote: () => void;
@@ -16,13 +18,15 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
   const router = useRouter();
 
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "products", label: "Products" },
-    { id: "services", label: "Services" },
-    { id: "why-us", label: "Why Us" },
-    { id: "contact", label: "Contact" },
+    { id: "home", label: "Home", href: "/#home", isRoute: false },
+    { id: "about", label: "About", href: "/#about", isRoute: false },
+    { id: "products", label: "Products", href: "/products", isRoute: true },
+    { id: "founders", label: "Founders", href: "/founders", isRoute: true },
+    { id: "services", label: "Services", href: "/#services", isRoute: false },
+    { id: "why-us", label: "Why Us", href: "/#why-us", isRoute: false },
+    { id: "contact", label: "Contact", href: "/#contact", isRoute: false },
   ];
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,27 +69,33 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
     };
   }, [pathname]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: { id: string; label: string; isRoute: boolean; href?: string }
+  ) => {
     setIsOpen(false);
+    if (item.isRoute && item.href) {
+      // Let standard Next Link or browser handle page routing
+      return;
+    }
 
+    e.preventDefault();
     if (pathname === "/") {
-      const target = document.getElementById(id);
+      const target = document.getElementById(item.id);
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      router.push(`/#${id}`);
+      router.push(`/#${item.id}`);
     }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled || pathname !== "/"
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled || pathname !== "/"
           ? "bg-slate-950/90 backdrop-blur-md border-b border-slate-800 py-4 shadow-lg shadow-black/40"
           : "bg-transparent py-6"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -93,10 +103,16 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
           <div className="flex-shrink-0 flex items-center">
             <Link
               href="/"
-              className="flex items-center gap-2.5 group"
+              className="flex items-center gap-3 group"
             >
-              <div className="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center font-extrabold text-white text-lg tracking-tight shadow-md shadow-brand-orange/30 group-hover:scale-105 transition-transform">
-                EWS
+              <div className="w-12 h-10 relative flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Image
+                  src="/logo.svg"
+                  alt="EWS Logo"
+                  width={48}
+                  height={40}
+                  className="object-contain w-full h-full"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-extrabold tracking-wider text-white leading-none">
@@ -107,24 +123,42 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
                 </span>
               </div>
             </Link>
+
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-1 lg:space-x-2 items-center">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={`/#${item.id}`}
-                onClick={(e) => handleNavClick(e, item.id)}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                  pathname === "/" && activeSection === item.id
-                    ? "text-brand-orange bg-brand-orange/10 font-semibold"
-                    : "text-slate-300 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = (pathname === "/" && activeSection === item.id) || (item.isRoute && pathname === item.href);
+              if (item.isRoute) {
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive
+                        ? "text-brand-orange bg-brand-orange/10 font-semibold"
+                        : "text-slate-300 hover:text-white hover:bg-white/5"
+                      }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              return (
+                <a
+                  key={item.id}
+                  href={`/#${item.id}`}
+                  onClick={(e) => handleNavClick(e, item)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive
+                      ? "text-brand-orange bg-brand-orange/10 font-semibold"
+                      : "text-slate-300 hover:text-white hover:bg-white/5"
+                    }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
             <button
               onClick={onOpenQuote}
               className="ml-4 px-5 py-2.5 bg-brand-orange text-white rounded-lg font-semibold text-sm hover:bg-orange-500 transition-all shadow-md shadow-brand-orange/20 hover:shadow-brand-orange/30 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
@@ -162,27 +196,44 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
 
       {/* Mobile Menu Slidedown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-screen opacity-100 bg-slate-950/95 border-b border-slate-800" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100 bg-slate-950/95 border-b border-slate-800" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="px-4 pt-2 pb-4 space-y-1 sm:px-3">
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`/#${item.id}`}
-              onClick={(e) => handleNavClick(e, item.id)}
-              className={`block px-3 py-3 rounded-md text-base font-medium transition-colors ${
-                pathname === "/" && activeSection === item.id
-                  ? "text-brand-orange bg-brand-orange/10"
-                  : "text-slate-300 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isActive = (pathname === "/" && activeSection === item.id) || (item.isRoute && pathname === item.href);
+            if (item.isRoute) {
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-3 rounded-md text-base font-medium transition-colors ${isActive
+                      ? "text-brand-orange bg-brand-orange/10"
+                      : "text-slate-300 hover:text-white hover:bg-white/5"
+                    }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+            return (
+              <a
+                key={item.id}
+                href={`/#${item.id}`}
+                onClick={(e) => handleNavClick(e, item)}
+                className={`block px-3 py-3 rounded-md text-base font-medium transition-colors ${isActive
+                    ? "text-brand-orange bg-brand-orange/10"
+                    : "text-slate-300 hover:text-white hover:bg-white/5"
+                  }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </div>
       </div>
+
     </header>
   );
 }
