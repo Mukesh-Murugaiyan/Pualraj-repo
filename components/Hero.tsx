@@ -97,59 +97,7 @@ export default function Hero({ onOpenQuote }: HeroProps) {
             </div>
           </div>
 
-          {/* Decorative Telemetry Panel */}
-          <div className="lg:col-span-5 hidden lg:block animate-slide-up">
-            <div className="relative mx-auto max-w-sm rounded-xl border border-slate-800 bg-slate-950/80 p-6 shadow-2xl shadow-black/80 backdrop-blur-md overflow-hidden group hover:border-brand-blue/50 transition-all duration-500">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-ice/5 rounded-full blur-xl group-hover:bg-brand-ice/15 transition-all" />
 
-              {/* Header */}
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand-orange animate-ping" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    EWS Controller Telemetry
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono text-brand-ice bg-brand-ice/10 px-2 py-0.5 rounded">
-                  ONLINE
-                </span>
-              </div>
-
-              {/* Body stats */}
-              <div className="space-y-4 font-mono text-xs text-slate-300">
-                <div className="flex items-center justify-between">
-                  <span>LOAD CELL STATUS</span>
-                  <span className="text-green-400 font-semibold">CALIBRATED [OK]</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>WEIGHING ACCURACY</span>
-                  <span className="text-slate-400 font-bold text-brand-ice">± 0.01% F.S.</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>CHECKWEIGHER SPEED</span>
-                  <span className="text-brand-orange font-bold">220 packs/min</span>
-                </div>
-
-                {/* Progress bar mock */}
-                <div>
-                  <div className="flex items-center justify-between mb-1 text-[10px] text-slate-500">
-                    <span>BATCHING HOPPER FILL RATE</span>
-                    <span>45.2 kg/s</span>
-                  </div>
-                  <div className="w-full bg-slate-900 h-2 rounded overflow-hidden">
-                    <div className="bg-gradient-to-r from-brand-blue to-brand-ice h-full w-[85%] animate-pulse" />
-                  </div>
-                </div>
-
-                {/* Diagnostics logs */}
-                <div className="bg-slate-900/60 border border-slate-800/80 rounded p-3 text-[10px] text-slate-400 space-y-1">
-                  <div className="text-brand-ice">[11:45:02] EWS Digital Digitizer synced...</div>
-                  <div className="text-slate-300">[11:45:03] Tare weight zeroed: 0.000 kg</div>
-                  <div className="text-brand-orange">[11:45:05] OIML Class III verification pass.</div>
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+
 
 export default function About() {
   const [stats, setStats] = useState({
@@ -121,7 +123,16 @@ export default function About() {
             <p>
               By combining IP68/IP69K hermetically sealed stainless steel load cells, ultra-fast 4800Hz digital ADCs, and custom PLC/SCADA control algorithms, EWS machines ensure legal-for-trade OIML Class III & NTEP accuracy under extreme thermal and mechanical vibration conditions.
             </p>
+            <div className="pt-2">
+              <Link
+                href="/founders"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 hover:bg-brand-orange text-brand-orange hover:text-white border border-brand-orange/30 rounded-lg text-xs font-bold transition-all"
+              >
+                Meet Our Founders & Leadership (Paulraj.S & Silambarasan.R) &rarr;
+              </Link>
+            </div>
           </div>
+
 
           {/* Stats Grid */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-6">
