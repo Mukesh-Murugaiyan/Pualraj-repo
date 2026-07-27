@@ -161,6 +161,11 @@ export async function sendNotificationEmail(data: EmailData) {
     console.log(`   Accepted   : ${JSON.stringify(info.accepted)}`);
     console.log(`   Response   : ${info.response}\n`);
 
+    // Dispatch automated confirmation email directly to customer's email address
+    sendCustomerConfirmationEmail(data).catch((err) => {
+      console.error('[Customer Confirmation Error]:', err);
+    });
+
     return info;
   } catch (error: any) {
     console.error('❌ [SMTP ERROR] Email dispatch failed!');
@@ -173,5 +178,73 @@ export async function sendNotificationEmail(data: EmailData) {
     console.error('   Stack Trace   :', error);
     console.error('========================================================================\n');
     throw error;
+  }
+}
+
+// Send automated receipt confirmation email to the customer's email address
+export async function sendCustomerConfirmationEmail(data: EmailData) {
+  const transporter = getSmtpTransporter();
+  const recipientEmail = process.env.SMTP_TO || 'ews@electrasystems24.com';
+  const senderEmail = process.env.SMTP_FROM || `"Electra Weighing Systems" <${process.env.SMTP_USER || 'ews@electrasystems24.com'}>`;
+  const isQuote = data.type === 'quote';
+  const targetProduct = data.productName || data.interest;
+
+  const subject = `Thank you for contacting Electra Weighing Systems - ${targetProduct || 'Inquiry Received'}`;
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+      <head><meta charset="utf-8" /></head>
+      <body style="font-family: Arial, Helvetica, sans-serif; background-color: #f1f5f9; color: #1e293b; margin: 0; padding: 24px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #cbd5e1; border-top: 5px solid #f97316; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+          
+          <!-- Header -->
+          <div style="padding: 20px 24px; background-color: #050b14; color: #ffffff;">
+            <div style="font-size: 11px; font-weight: bold; color: #f97316; text-transform: uppercase; letter-spacing: 1.5px;">Electra Weighing Systems (EWS)</div>
+            <h2 style="margin: 6px 0 0 0; font-size: 18px; color: #ffffff;">We Have Received Your ${isQuote ? 'Quote Request' : 'Inquiry'}</h2>
+          </div>
+
+          <!-- Body -->
+          <div style="padding: 24px; color: #1e293b; font-size: 14px; line-height: 1.6;">
+            <p style="margin-top: 0;">Dear <b>${data.name}</b>,</p>
+            <p>Thank you for reaching out to <b>Electra Weighing Systems (EWS)</b>. We have successfully received your ${isQuote ? 'quotation request' : 'inquiry'}${targetProduct ? ` regarding <b>${targetProduct}</b>` : ''}.</p>
+            <p>Our engineering team is reviewing your project specifications and will get in touch with you shortly.</p>
+            
+            <div style="margin: 20px 0; padding: 16px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;">
+              <h4 style="margin: 0 0 10px 0; color: #000000; font-size: 14px;">Summary of Submitted Request:</h4>
+              <p style="margin: 4px 0;"><b style="color: #000000;">Sender Name:</b> ${data.name}</p>
+              <p style="margin: 4px 0;"><b style="color: #000000;">Email:</b> ${data.email}</p>
+              <p style="margin: 4px 0;"><b style="color: #000000;">Phone:</b> ${data.phone || 'N/A'}</p>
+              ${targetProduct ? `<p style="margin: 4px 0;"><b style="color: #000000;">Product / Machine:</b> ${targetProduct}</p>` : ''}
+              ${data.timeline ? `<p style="margin: 4px 0;"><b style="color: #000000;">Timeline:</b> ${data.timeline}</p>` : ''}
+            </div>
+
+            <p style="color: #64748b; font-size: 13px;">If you have any urgent technical requirements, feel free to reply directly to this email or call our team at <b>+91 9566962031</b> / <b>+91 9943182031</b> / <b>+91 6361763911</b>.</p>
+            
+            <p style="margin-top: 24px; margin-bottom: 0;">Best regards,<br/><b>Electra Weighing Systems Engineering Team</b></p>
+          </div>
+
+          <!-- Footer -->
+          <div style="padding: 14px 24px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 11px; color: #64748b; text-align: center;">
+            Electra Weighing Systems &bull; ISO 9001:2015 Certified Manufacturing Pioneer
+          </div>
+
+        </div>
+      </body>
+    </html>
+  `;
+
+  try {
+    const info = await transporter.sendMail({
+      from: senderEmail,
+      to: data.email,
+      replyTo: recipientEmail,
+      subject: subject,
+      html: htmlContent,
+    });
+    console.log(`✅ [CUSTOMER CONFIRMATION SENT] Delivered confirmation email to customer (${data.email})! Message ID: ${info.messageId}`);
+    return info;
+  } catch (err: any) {
+    console.error(`⚠️ [CUSTOMER CONFIRMATION WARNING] Could not send confirmation email to customer (${data.email}):`, err.message);
   }
 }
