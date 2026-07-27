@@ -21,6 +21,15 @@ export const metadata: Metadata = {
     default: "Electra Weighing Systems (EWS) | Industrial Weighing & SPM Automation",
     template: "%s | Electra Weighing Systems (EWS)",
   },
+  icons: {
+    icon: [
+      { url: "/logo.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
   description:
     "Electra Weighing Systems (EWS) designs and manufactures high-accuracy industrial weighing machines, digital load cell systems, dynamic inline checkweighers, hopper batching rigs, and custom SPM weighing automation solutions.",
   keywords: [

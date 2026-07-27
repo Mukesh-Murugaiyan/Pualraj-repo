@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <rect width="512" height="512" rx="128" fill="#050b14"/>
+  <rect width="512" height="512" fill="#050b14"/>
   <g transform="translate(6, 60)">
     <!-- Sunburst Arch -->
-    <path d="M 120 180 A 130 130 0 0 1 380 180" fill="none" stroke="#f97316" stroke-width="28" stroke-linecap="round"/>
+    <path d="M 120 150 A 130 130 0 0 1 380 150" fill="none" stroke="#f97316" stroke-width="26" stroke-linecap="round"/>
     
     <!-- Sun Rays -->
-    <polygon points="100,170 60,165 90,145" fill="#f97316" />
-    <polygon points="140,115 110,75 150,95" fill="#f97316" />
-    <polygon points="205,75 195,30 230,55" fill="#f97316" />
-    <polygon points="280,60 295,30 305,75" fill="#f97316" />
-    <polygon points="350,95 390,75 360,115" fill="#f97316" />
-    <polygon points="410,145 440,165 400,170" fill="#f97316" />
+    <polygon points="100,140 60,135 90,115" fill="#f97316" />
+    <polygon points="140,85 110,45 150,65" fill="#f97316" />
+    <polygon points="205,45 195,0 230,25" fill="#f97316" />
+    <polygon points="280,30 295,0 305,45" fill="#f97316" />
+    <polygon points="350,65 390,45 360,85" fill="#f97316" />
+    <polygon points="410,115 440,135 400,140" fill="#f97316" />
 
     <!-- EWS Logo Text -->
-    <text x="250" y="300" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="140" fill="#ffffff" text-anchor="middle" letter-spacing="-2">
-      <tspan fill="#ffffff">E</tspan><tspan fill="#ffffff">W</tspan><tspan fill="#f97316">S</tspan>
+    <text x="250" y="270" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="145" fill="#ffffff" text-anchor="middle" letter-spacing="-2">
+      <tspan fill="#e2e8f0">E</tspan><tspan fill="#e2e8f0">W</tspan><tspan fill="#f97316">S</tspan>
     </text>
   </g>
 </svg>

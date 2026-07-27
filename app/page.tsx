@@ -16,18 +16,24 @@ import QuoteModal from "@/components/QuoteModal";
 
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<string>("");
+
+  const handleOpenQuote = (productName?: string) => {
+    setSelectedProduct(productName || "");
+    setIsQuoteOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-[#050b14] text-slate-100 flex flex-col justify-between selection:bg-brand-orange selection:text-white">
       {/* Header / Nav */}
-      <Navbar onOpenQuote={() => setIsQuoteOpen(true)} />
+      <Navbar onOpenQuote={() => handleOpenQuote()} />
 
       {/* Main content body */}
       <main className="flex-grow">
         {/* Sections */}
-        <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
+        <Hero onOpenQuote={() => handleOpenQuote()} />
         <About />
-        <Products onOpenQuote={() => setIsQuoteOpen(true)} />
+        <Products onOpenQuote={(prodTitle) => handleOpenQuote(prodTitle)} />
         <Services />
         <Industries />
         <WhyChooseUs />
@@ -42,7 +48,11 @@ export default function Home() {
       <FloatingActions />
 
       {/* Dynamic intake form modal */}
-      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
+      <QuoteModal
+        isOpen={isQuoteOpen}
+        onClose={() => setIsQuoteOpen(false)}
+        productName={selectedProduct}
+      />
     </div>
   );
 }
