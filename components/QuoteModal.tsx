@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 interface QuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
+  productName?: string;
 }
 
-export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
+export default function QuoteModal({ isOpen, onClose, productName }: QuoteModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,15 +35,27 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API request
-    setTimeout(() => {
+    try {
+      await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "quote",
+          productName: productName || formData.interest,
+          ...formData,
+        }),
+      });
+    } catch (error) {
+      console.error("Error submitting quote request:", error);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 1500);
+    }
   };
+
 
   const handleReset = () => {
     setFormData({

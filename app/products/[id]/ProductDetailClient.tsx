@@ -436,7 +436,7 @@ export default function ProductDetailClient({
       <FloatingActions />
 
       {/* Quote Modal */}
-      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
+      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} productName={product.title} />
     </div>
   );
 }

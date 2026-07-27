@@ -8,7 +8,7 @@ import CardSkeleton from "@/components/CardSkeleton";
 import { getYouTubeEmbedUrl } from "@/lib/video";
 
 interface ProductsProps {
-  onOpenQuote: () => void;
+  onOpenQuote: (productName?: string) => void;
 }
 
 export default function Products({ onOpenQuote }: ProductsProps) {
@@ -150,7 +150,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
                   </Link>
 
                   <button
-                    onClick={onOpenQuote}
+                    onClick={() => onOpenQuote(product.title)}
                     className="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-200 hover:text-white rounded-lg font-semibold text-xs transition-colors cursor-pointer"
                   >
                     Inquire

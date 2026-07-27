@@ -214,7 +214,7 @@ export default function ProductsClientCatalog({ initialProducts }: ProductsClien
 
       <Footer />
       <FloatingActions />
-      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
+      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} productName={quoteProductTitle} />
     </div>
   );
 }
