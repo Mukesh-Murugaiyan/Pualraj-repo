@@ -162,9 +162,11 @@ export async function sendNotificationEmail(data: EmailData) {
     console.log(`   Response   : ${info.response}\n`);
 
     // Dispatch automated confirmation email directly to customer's email address
-    sendCustomerConfirmationEmail(data).catch((err) => {
+    try {
+      await sendCustomerConfirmationEmail(data);
+    } catch (err) {
       console.error('[Customer Confirmation Error]:', err);
-    });
+    }
 
     return info;
   } catch (error: any) {
