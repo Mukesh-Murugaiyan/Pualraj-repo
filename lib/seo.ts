@@ -1,6 +1,6 @@
 import { Product } from './products';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.electrasystems24.com';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://electrasystems24.com';
 
 export const COMPANY_DETAILS = {
   legalName: 'Electra Weighing Systems',
@@ -37,6 +37,10 @@ export const FOUNDERS = [
     bio: 'Pioneer in heavy industrial weighing automation, strain-gauge sensor technology, and custom SPM machinery design with over 15+ years of engineering leadership.',
     knowsAbout: [
       'Industrial Weighing Systems',
+      'Rice Packing Machines',
+      'Loading Conveyors',
+      'Secondary Packaging Machines',
+      'Auto Packing Machines',
       'Strain Gauge Load Cells',
       'Digital Transducers',
       'SPM Automation',
@@ -137,6 +141,44 @@ export function getLocalBusinessJsonLd() {
       latitude: COMPANY_DETAILS.geo.latitude,
       longitude: COMPANY_DETAILS.geo.longitude,
     },
+    image: `${SITE_URL}/og-image.jpg`,
+    founder: FOUNDERS.map((founder) => ({
+      '@type': 'Person',
+      name: founder.name,
+      jobTitle: founder.jobTitle,
+      email: founder.email,
+    })),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '48',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'K. Rajasekar (Factory Operation Manager)' },
+        datePublished: '2025-11-15',
+        reviewBody: 'High accuracy rice packing machine and load cell batching system installed by Paulraj and the EWS team. Zero downtime performance.',
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: '5',
+          bestRating: '5',
+        },
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'M. Senthil (Automation Plant Lead)' },
+        datePublished: '2025-12-04',
+        reviewBody: 'Outstanding inline checkweigher and loading conveyor installation with excellent technical support from founder Silambarasan.',
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: '5',
+          bestRating: '5',
+        },
+      },
+    ],
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',

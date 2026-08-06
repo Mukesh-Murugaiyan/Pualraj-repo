@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   keywords: [
     "EWS product catalog",
     "industrial weighing machine catalog",
+    "rice packing machine",
+    "loading conveyor",
+    "secondary packaging machine",
+    "auto packing machine",
     "load cell systems list",
     "dynamic checkweighers products",
     "hopper batching machinery",
