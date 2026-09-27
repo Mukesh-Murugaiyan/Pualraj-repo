@@ -63,6 +63,11 @@ export async function POST(request: Request) {
     const saved = await saveProductToDb(newProduct);
     invalidateProductCache();
     revalidatePath('/');
+    revalidatePath('/products');
+    revalidatePath(`/products/${saved.id}`);
+    revalidatePath('/products/[id]', 'page');
+    revalidatePath('/sitemap.xml');
+    revalidatePath('/sitemap');
     revalidatePath('/api/products');
     return NextResponse.json({ success: true, product: saved }, { status: 201 });
   } catch (error) {
@@ -86,7 +91,13 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
+    invalidateProductCache();
     revalidatePath('/');
+    revalidatePath('/products');
+    revalidatePath(`/products/${id}`);
+    revalidatePath('/products/[id]', 'page');
+    revalidatePath('/sitemap.xml');
+    revalidatePath('/sitemap');
     revalidatePath('/api/products');
     return NextResponse.json({ success: true, product: updated });
   } catch (error) {
@@ -119,7 +130,13 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Product not found or already deleted' }, { status: 404 });
     }
 
+    invalidateProductCache();
     revalidatePath('/');
+    revalidatePath('/products');
+    revalidatePath(`/products/${id}`);
+    revalidatePath('/products/[id]', 'page');
+    revalidatePath('/sitemap.xml');
+    revalidatePath('/sitemap');
     revalidatePath('/api/products');
     return NextResponse.json({ success: true, message: `Product ${id} deleted successfully` });
   } catch (error) {

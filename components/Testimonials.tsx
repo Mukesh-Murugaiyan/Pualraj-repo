@@ -5,24 +5,24 @@ import { useState, useEffect } from "react";
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "Electra Weighing Systems (EWS) designed and integrated our dynamic inline checkweigher and hopper batching line. The system has been running 3 shifts a day with zero calibration drift. Our filling accuracy reached ±0.01g.",
-      author: "Robert Miller",
-      title: "VP of Operations",
-      company: "Apex Process Industries",
+      quote: "High-accuracy automatic rice packing machine and load cell batching system installed by Paulraj and the EWS engineering team. Zero downtime performance with dependable 25kg and 50kg bagging accuracy.",
+      author: "K. Rajasekar",
+      title: "Factory Operations Manager",
+      company: "Sri Krishna Modern Rice Mill",
       rating: 5,
     },
     {
-      quote: "We needed a custom SS316L liquid dispensing and load cell weighing platform that complied with FDA cleanroom standards. EWS delivered a stainless steel system that cleared OIML validation on the first pass.",
-      author: "Dr. Sarah Lin",
-      title: "Plant Manager",
-      company: "BioMed Laboratories",
+      quote: "Outstanding dynamic inline checkweigher and loading conveyor installation with excellent technical direction from founder Silambarasan. The continuous weight verification has eliminated out-of-spec packages completely.",
+      author: "M. Senthil",
+      title: "Automation Plant Lead",
+      company: "Chennai Industrial Packaging",
       rating: 5,
     },
     {
-      quote: "Our bulk silo packaging lines were bottlenecking throughput. EWS retrofitted our legacy hoppers with high-speed digital strain gauge load cells and custom SCADA dashboards. Outstanding service and engineering accuracy.",
-      author: "Marcus Vance",
-      title: "Head of Engineering",
-      company: "Nova Pack Foods",
+      quote: "EWS automated bagging towers and hopper dosing systems transformed our production cycle time. Rugged structure, reliable digital load cells, and prompt local engineering support.",
+      author: "V. Natarajan",
+      title: "Managing Partner",
+      company: "Thiruvallur Agro Commodities",
       rating: 5,
     },
   ];
@@ -45,22 +45,29 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-24 bg-slate-950 border-t border-slate-800">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-24 bg-slate-900/40 border-t border-slate-800/60 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-brand-orange/5 blur-[130px] pointer-events-none rounded-full" />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
-            Customer Testimonials
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+            Client Endorsements
           </span>
-          <h2 className="text-3xl font-bold text-white tracking-tight">
-            Trusted by Manufacturing Leaders
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            Trusted by Industrial Leaders
           </h2>
-          <div className="w-16 h-1 bg-brand-orange mx-auto rounded" />
+          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent mx-auto rounded-full" />
+          <p className="text-slate-400 font-light text-sm sm:text-base leading-relaxed">
+            Real feedback from factory operations heads and plant managers who rely on Electra Weighing Systems daily.
+          </p>
         </div>
 
         {/* Carousel Card */}
-        <div className="relative bg-slate-900/40 border border-slate-800 rounded-2xl p-8 sm:p-12 shadow-2xl overflow-hidden min-h-[300px] flex flex-col justify-between">
+        <div className="relative bg-slate-900/50 border border-slate-800/80 rounded-2xl p-8 sm:p-12 shadow-2xl overflow-hidden min-h-[300px] flex flex-col justify-between">
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full blur-xl" />
           
           {/* Quote Icon decorative */}

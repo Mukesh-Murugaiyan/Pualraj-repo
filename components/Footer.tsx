@@ -15,7 +15,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-8 text-slate-400">
+    <footer className="bg-[#030710] border-t border-slate-800/80 pt-16 pb-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
@@ -85,28 +85,28 @@ export default function Footer() {
           {/* Industry Solutions */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Solutions
+              Core Machinery
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#products" onClick={(e) => handleNavClick(e, "products")} className="hover:text-brand-orange transition-colors">
+                <Link href="/products" className="hover:text-brand-orange transition-colors">
+                  Rice Packing & Bagging Towers
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-brand-orange transition-colors">
+                  Dynamic Inline Checkweighers
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-brand-orange transition-colors">
+                  Silo & Hopper Batching Rigs
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-brand-orange transition-colors">
                   Special Purpose Machines (SPM)
-                </a>
-              </li>
-              <li>
-                <a href="#products" onClick={(e) => handleNavClick(e, "products")} className="hover:text-brand-orange transition-colors">
-                  PLC Automation Panels
-                </a>
-              </li>
-              <li>
-                <a href="#products" onClick={(e) => handleNavClick(e, "products")} className="hover:text-brand-orange transition-colors">
-                  Material Handling Conveyors
-                </a>
-              </li>
-              <li>
-                <a href="#products" onClick={(e) => handleNavClick(e, "products")} className="hover:text-brand-orange transition-colors">
-                  Robotic Welding & Assembly Cells
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

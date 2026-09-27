@@ -9,16 +9,23 @@ import { getYouTubeEmbedUrl } from "@/lib/video";
 
 interface ProductsProps {
   onOpenQuote: (productName?: string) => void;
+  initialProducts?: Product[];
 }
 
-export default function Products({ onOpenQuote }: ProductsProps) {
+export default function Products({ onOpenQuote, initialProducts = [] }: ProductsProps) {
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
   const [activeVideoTitle, setActiveVideoTitle] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [productList, setProductList] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(initialProducts.length === 0);
+  const [productList, setProductList] = useState<Product[]>(initialProducts);
 
-  // Fetch live products from database API
+  // Fetch live products from database API if not initially provided
   useEffect(() => {
+    if (initialProducts && initialProducts.length > 0) {
+      setProductList(initialProducts);
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     fetch("/api/products")
       .then((res) => res.json())
@@ -33,21 +40,22 @@ export default function Products({ onOpenQuote }: ProductsProps) {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [initialProducts]);
 
   return (
-    <section id="products" className="py-24 bg-slate-900/60 border-y border-slate-800/60 relative overflow-hidden">
+    <section id="products" className="py-24 bg-slate-900/40 border-t border-slate-800/60 relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-orange/5 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-3.5 py-1.5 rounded-full border border-brand-orange/20 inline-block">
-            Our Automation Machinery
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+            Machinery & Equipment
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Featured Product Lines
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent mx-auto rounded-full" />
@@ -67,7 +75,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
                 key={product.id}
                 className="bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden hover:border-brand-orange/50 transition-all duration-300 flex flex-col justify-between h-full group shadow-xl hover:shadow-brand-orange/10"
               >
-                
+
                 {/* Card Header & Lazy Loaded Image */}
                 <div>
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
@@ -79,7 +87,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90 pointer-events-none" />
-                    
+
                     {/* Category Badge */}
                     <div className="absolute top-3 left-3 z-10">
                       <span className="bg-brand-orange/90 text-white font-mono text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md shadow-md">
@@ -102,11 +110,6 @@ export default function Products({ onOpenQuote }: ProductsProps) {
                         <span>Watch Video</span>
                       </button>
                     )}
-
-                    {/* Model Ref */}
-                    <div className="absolute bottom-3 left-3 text-[11px] font-mono text-slate-400 z-10">
-                      Model: EWS-{product.id.toUpperCase()}
-                    </div>
                   </div>
 
                   {/* Card Content Body */}
@@ -114,7 +117,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
                     <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-brand-orange transition-colors line-clamp-1">
                       {product.title}
                     </h3>
-                    
+
                     <p className="text-xs font-medium text-brand-orange/90 italic line-clamp-1">
                       {product.subtitle}
                     </p>
@@ -168,7 +171,7 @@ export default function Products({ onOpenQuote }: ProductsProps) {
       {activeVideoUrl && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md">
           <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-4 p-4 sm:p-6">
-            
+
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <div className="flex items-center gap-2">

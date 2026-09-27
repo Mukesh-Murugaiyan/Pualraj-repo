@@ -48,20 +48,24 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-950 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-slate-950 border-t border-slate-800/60 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[600px] h-[300px] bg-brand-orange/5 blur-[130px] pointer-events-none rounded-full" />
 
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
-            Contact Us
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+            Get In Touch
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Discuss Your Automation Project
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            Discuss Your Plant Automation
           </h2>
-          <div className="w-16 h-1 bg-brand-orange mx-auto rounded" />
-          <p className="text-slate-400 font-light leading-relaxed">
-            Have a plant engineering challenge? Send us a message, and our sales team will connect you with a technical automation consultant.
+          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent mx-auto rounded-full" />
+          <p className="text-slate-400 font-light text-sm sm:text-base leading-relaxed">
+            Have a weighing machine, rice packing, or automation project inquiry? Reach out directly to our engineering leadership team.
           </p>
         </div>
 
@@ -69,7 +73,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* Details & Form Column */}
-          <div className="lg:col-span-7 bg-slate-900/40 border border-slate-800 rounded-xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -200,7 +204,7 @@ export default function Contact() {
           <div className="lg:col-span-5 flex flex-col gap-6">
 
             {/* Quick Contacts */}
-            <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-6 shadow-2xl space-y-4">
+            <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 sm:p-7 shadow-2xl space-y-4">
               {/* Director 1 - Paulraj.S */}
               <div className="flex gap-4 items-start">
                 <div className="p-3 bg-brand-orange/10 text-brand-orange rounded-lg flex-shrink-0 mt-0.5">
@@ -290,7 +294,7 @@ export default function Contact() {
             </div>
 
             {/* Map Frame wrapper with dark industrial filter styling */}
-            <div className="bg-slate-900/40 border border-slate-800 rounded-xl overflow-hidden h-[250px] shadow-2xl relative">
+            <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl overflow-hidden h-[260px] shadow-2xl relative">
               <iframe
                 title="Electra Weighing Systems (EWS) Factory & Headquarters Location Map"
                 aria-label="Electra Weighing Systems Google Maps Location"
