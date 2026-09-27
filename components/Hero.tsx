@@ -33,8 +33,8 @@ export default function Hero({ onOpenQuote }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-transparent to-slate-950/90" />
 
         {/* Glow decorative balls */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-ice/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-ice/10 rounded-full blur-3xl animate-float pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: "2s" }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -90,10 +90,10 @@ export default function Hero({ onOpenQuote }: HeroProps) {
                 <p className="text-2xl font-bold text-white tracking-tight">700+</p>
                 <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Weighers Installed</p>
               </div>
-              {/* <div>
-                <p className="text-2xl font-bold text-white tracking-tight">0.001g</p>
-                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">Max Resolution</p>
-              </div> */}
+              <div className="pl-2">
+                <p className="text-2xl font-bold text-white tracking-tight">±0.01g</p>
+                <p className="text-xs text-slate-400 font-medium uppercase mt-0.5">High Precision</p>
+              </div>
             </div>
           </div>
 

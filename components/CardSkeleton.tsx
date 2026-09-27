@@ -6,7 +6,7 @@ export default function CardSkeleton({ count = 3, className }: { count?: number;
       {Array.from({ length: count }).map((_, idx) => (
         <div
           key={idx}
-          className="bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl animate-pulse flex flex-col justify-between h-full"
+          className="bg-slate-950 border border-slate-800/90 rounded-2xl overflow-hidden shadow-xl animate-shimmer flex flex-col justify-between h-full"
         >
           {/* Top Image Placeholder */}
           <div className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden flex items-center justify-center">

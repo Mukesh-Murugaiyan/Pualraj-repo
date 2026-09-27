@@ -96,20 +96,24 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-24 bg-slate-950 border-t border-slate-800/60 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[300px] bg-brand-orange/5 blur-[130px] pointer-events-none rounded-full" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
-            Our Services
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+            Engineering Services
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            End-to-End Automation Engineering
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            End-to-End Automation & Weighing
           </h2>
-          <div className="w-16 h-1 bg-brand-orange mx-auto rounded" />
-          <p className="text-slate-400 font-light leading-relaxed">
-            From initial factory floor consult and feasibility research to installation and remote support, our engineering team manages the entire lifecycle.
+          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent mx-auto rounded-full" />
+          <p className="text-slate-400 font-light text-sm sm:text-base leading-relaxed">
+            From custom mechanical CAD modeling and digital transducer calibration to on-site commissioning and lifetime service, EWS manages the complete machine lifecycle.
           </p>
         </div>
 
@@ -118,21 +122,22 @@ export default function Services() {
           {servicesList.map((service, index) => (
             <div
               key={index}
-              className="bg-slate-900/40 border border-slate-800/80 rounded-xl p-6 hover:bg-slate-900/80 hover:border-brand-ice/20 transition-all duration-300 shadow-md group relative overflow-hidden"
+              className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-7 hover:border-brand-orange/40 hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-black/30 group relative overflow-hidden flex flex-col justify-between"
             >
               {/* Subtle top indicator bar */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-brand-orange opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />
               
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-brand-orange/10 rounded-lg group-hover:scale-105 transition-transform flex-shrink-0">
-                  {service.icon}
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange group-hover:scale-105 transition-transform flex-shrink-0">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-white tracking-wide group-hover:text-brand-orange transition-colors">
+                    {service.title}
+                  </h3>
                 </div>
-                <h3 className="text-lg font-bold text-white tracking-wide">
-                  {service.title}
-                </h3>
-              </div>
 
-              <p className="text-sm text-slate-400 leading-relaxed font-light mb-6">
+                <p className="text-sm text-slate-300 font-light leading-relaxed mb-6">
                 {service.desc}
               </p>
 
@@ -146,6 +151,7 @@ export default function Services() {
                   ))}
                 </ul>
               </div>
+            </div>
             </div>
           ))}
         </div>

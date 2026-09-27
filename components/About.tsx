@@ -94,27 +94,31 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 bg-slate-950" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-24 bg-slate-900/30 border-t border-slate-800/60 relative overflow-hidden" ref={sectionRef}>
+      {/* Background glow */}
+      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[500px] h-[250px] bg-brand-ice/5 blur-[120px] pointer-events-none rounded-full" />
 
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-sm font-semibold uppercase tracking-wider text-brand-orange">
-            Company Profile & Engineering Excellence
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-orange bg-brand-orange/10 border border-brand-orange/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+            Engineering Excellence
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Electra Weighing Systems (EWS)
           </h2>
-          <div className="w-16 h-1 bg-brand-orange mx-auto rounded" />
-          <p className="text-slate-400 font-light leading-relaxed">
-            Electra Weighing Systems (EWS) is an ISO 9001:2015 certified engineering pioneer specializing in high-accuracy industrial weighing machines, digital strain gauge load cell technology, dynamic inline checkweighers, hopper batching rigs, and custom Special Purpose Machines (SPM).
+          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent mx-auto rounded-full" />
+          <p className="text-slate-400 font-light text-sm sm:text-base leading-relaxed">
+            ISO 9001:2015 certified engineering pioneer specializing in high-accuracy industrial weighing machines, digital strain gauge load cell technology, dynamic inline checkweighers, hopper batching rigs, and custom SPM automation.
           </p>
         </div>
 
         {/* Core Description + Stats Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
           <div className="lg:col-span-6 space-y-6 text-slate-300 font-light leading-relaxed">
-            <h3 className="text-2xl font-bold text-white tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Pioneering Heavy Industrial & Automated Weighing Solutions
             </h3>
             <p>
@@ -126,7 +130,7 @@ export default function About() {
             <div className="pt-2">
               <Link
                 href="/founders"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange/10 hover:bg-brand-orange text-brand-orange hover:text-white border border-brand-orange/30 rounded-lg text-xs font-bold transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-orange/10 hover:bg-brand-orange text-brand-orange hover:text-white border border-brand-orange/30 rounded-xl text-xs font-bold transition-all shadow-md hover:shadow-brand-orange/30 cursor-pointer"
               >
                 Meet Our Founders & Leadership (Paulraj.S & Silambarasan.R) &rarr;
               </Link>
@@ -135,37 +139,37 @@ export default function About() {
 
 
           {/* Stats Grid */}
-          <div className="lg:col-span-6 grid grid-cols-2 gap-6">
-            <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-orange/30 transition-colors">
-              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2">
+          <div className="lg:col-span-6 grid grid-cols-2 gap-5 sm:gap-6">
+            <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 text-center shadow-xl shadow-black/30 hover:border-brand-orange/40 transition-all duration-300 group">
+              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2 group-hover:text-brand-orange transition-colors">
                 {stats.years}+
               </span>
-              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
                 Years of Innovation
               </span>
             </div>
-            <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-blue/30 transition-colors">
-              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2">
+            <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 text-center shadow-xl shadow-black/30 hover:border-brand-orange/40 transition-all duration-300 group">
+              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2 group-hover:text-brand-orange transition-colors">
                 {stats.projects}+
               </span>
-              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
                 EWS Systems Installed
               </span>
             </div>
-            <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-blue/30 transition-colors">
-              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2">
+            <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 text-center shadow-xl shadow-black/30 hover:border-brand-orange/40 transition-all duration-300 group">
+              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2 group-hover:text-brand-orange transition-colors">
                 {stats.engineers}+
               </span>
-              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
                 Weighing Specialists
               </span>
             </div>
-            <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-6 text-center shadow-lg shadow-black/10 hover:border-brand-orange/30 transition-colors">
-              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2">
+            <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 text-center shadow-xl shadow-black/30 hover:border-brand-orange/40 transition-all duration-300 group">
+              <span className="block text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-2 group-hover:text-brand-orange transition-colors">
                 {stats.satisfaction}%
               </span>
-              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">
-                Calibration Accuracy Pass Rate
+              <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                Customer Satisfaction
               </span>
             </div>
           </div>

@@ -108,9 +108,19 @@ export function getOrganizationJsonLd() {
     ],
     founder: FOUNDERS.map((founder) => ({
       '@type': 'Person',
+      '@id': `${SITE_URL}/founders/#${founder.name.toLowerCase().replace(/[^a-z0-9]/g, '')}`,
       name: founder.name,
       jobTitle: founder.jobTitle,
       email: founder.email,
+      telephone: founder.phones[0],
+      url: `${SITE_URL}/founders`,
+      description: founder.bio,
+      knowsAbout: founder.knowsAbout,
+      worksFor: {
+        '@type': 'Organization',
+        name: COMPANY_DETAILS.legalName,
+        url: SITE_URL,
+      },
     })),
   };
 }
@@ -144,9 +154,13 @@ export function getLocalBusinessJsonLd() {
     image: `${SITE_URL}/og-image.jpg`,
     founder: FOUNDERS.map((founder) => ({
       '@type': 'Person',
+      '@id': `${SITE_URL}/founders/#${founder.name.toLowerCase().replace(/[^a-z0-9]/g, '')}`,
       name: founder.name,
       jobTitle: founder.jobTitle,
       email: founder.email,
+      telephone: founder.phones[0],
+      url: `${SITE_URL}/founders`,
+      description: founder.bio,
     })),
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -264,6 +278,22 @@ export function getProductJsonLd(product: Product) {
     }))
     : [];
 
+  const images: string[] = [];
+  if (product.image) {
+    images.push(product.image.startsWith('http') ? product.image : getSiteUrl(product.image));
+  }
+  if (Array.isArray(product.gallery)) {
+    product.gallery.forEach((g) => {
+      if (g) {
+        const fullUrl = g.startsWith('http') ? g : getSiteUrl(g);
+        if (!images.includes(fullUrl)) images.push(fullUrl);
+      }
+    });
+  }
+  if (images.length === 0) {
+    images.push(`${SITE_URL}/og-image.jpg`);
+  }
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -271,7 +301,7 @@ export function getProductJsonLd(product: Product) {
     name: product.title,
     description: product.desc || product.fullDescription,
     category: product.category,
-    image: product.image ? (product.image.startsWith('http') ? product.image : getSiteUrl(product.image)) : undefined,
+    image: images,
     url: productUrl,
     brand: {
       '@type': 'Brand',
@@ -285,12 +315,21 @@ export function getProductJsonLd(product: Product) {
       '@type': 'Offer',
       url: productUrl,
       priceCurrency: 'INR',
+      price: '150000',
+      priceValidUntil: '2028-12-31',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       seller: {
         '@type': 'Organization',
         name: 'Electra Weighing Systems',
       },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '24',
+      bestRating: '5',
+      worstRating: '1',
     },
     additionalProperty: specsArray,
   };

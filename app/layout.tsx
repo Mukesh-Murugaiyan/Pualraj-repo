@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       "ISO 9001:2015 certified engineering pioneer in industrial weighing machines, digital strain gauge load cell technology, dynamic checkweighers, and custom SPM automation.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: `${SITE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Electra Weighing Systems (EWS) Industrial Machine Banner",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: "Electra Weighing Systems (EWS) | Industrial Weighing & Automation",
     description:
       "High-accuracy industrial weighing machines, digital load cells, dynamic checkweighers, and SPM automation engineered for zero-error precision.",
-    images: ["/og-image.jpg"],
+    images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -104,6 +104,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>

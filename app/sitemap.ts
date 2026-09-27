@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
-import { getProducts } from '@/lib/products';
+import { getAllProductsFromDb } from '@/lib/db';
 import { SITE_URL } from '@/lib/seo';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
@@ -29,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic product routes
   try {
-    const products = await getProducts() || [];
+    const products = (await getAllProductsFromDb({ forceFresh: true })) || [];
     const productRoutes: MetadataRoute.Sitemap = products?.map((product) => ({
       url: `${baseUrl}/products/${product.id}`,
       lastModified: new Date(),
